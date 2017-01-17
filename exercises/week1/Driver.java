@@ -6,9 +6,9 @@ public class Driver {
         Class baCls = BankAccount.class;
         try {
             Object myAccount = baCls.newInstance();
-            aStorage.setValue(myAccount);
+//            aStorage.setValue(myAccount);
             // Deposit
-            myAccount.deposit(15);
+//            myAccount.deposit(15);
         } catch (InstantiationException e) {
             // ...
         } catch (IllegalAccessException e) {

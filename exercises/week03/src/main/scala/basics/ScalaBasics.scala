@@ -66,15 +66,10 @@ object ScalaBasics {
           min = r(count - 1)
         count -= 1
       }
-
       min
     } else {
       0
     }
-
-
-    // e.g. minWhile(Array(55, 6, 24, 32, 1, 16, 12)) ==2
-
   }
 
   /**
@@ -89,8 +84,13 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minFor(r: Array[Int]): Int = ???
-
+  def minFor(r: Array[Int]): Int = {
+      var minSoFar: Integer = r(0)
+      for (i <- 1 until r.length - 1) {
+        minSoFar = r(i).min(minSoFar) // returns r(i) if lower than min, else returns minSoFar
+      }
+      minSoFar
+    }
   /**
    * Write a function called minRecursive that returns the minimum integer in the Array r.
    *

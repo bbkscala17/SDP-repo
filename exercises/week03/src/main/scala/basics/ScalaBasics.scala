@@ -1,5 +1,7 @@
 package basics
 
+import scala.collection.mutable.ArrayBuffer
+
 /**
  * This is a singleton object containing the functions you need
  * to implement. Please make sure to read the documentation associated
@@ -8,59 +10,59 @@ package basics
 object ScalaBasics {
 
   /**
-   * Write a function called add that takes two Int parameters
-   * and returns their sum.
-   *
-   * @param a operand a
-   * @param b operand b
-   * @return the sum
-   */
+    * Write a function called add that takes two Int parameters
+    * and returns their sum.
+    *
+    * @param a operand a
+    * @param b operand b
+    * @return the sum
+    */
   def add(a: Int, b: Int): Int = {
-    a+b
+    a + b
   }
 
   /**
-   * Write a function that returns the inclusive Range from start to end.
-   *
-   * HINT: Look at the Scaladoc for Int/RichInt to find the answer.
-   *
-   * @param start the start of the range
-   * @param end the end of the range
-   * @return the inclusive Range from start to end
-   */
+    * Write a function that returns the inclusive Range from start to end.
+    *
+    * HINT: Look at the Scaladoc for Int/RichInt to find the answer.
+    *
+    * @param start the start of the range
+    * @param end   the end of the range
+    * @return the inclusive Range from start to end
+    */
   def inRange(start: Int, end: Int): Range = {
-      start.to(end)
+    start.to(end)
   }
 
   /**
-   * Write a function that returns a Range of odd n odd integers starting at 1.
-   *
-   * HINT: Look at the Scaladoc for Int/RichInt to find the answer.
-   *
-   * @param n the number of odd integers in the range
-   * @return a Range of odd integers, excluding the last add integer
-   */
+    * Write a function that returns a Range of odd n odd integers starting at 1.
+    *
+    * HINT: Look at the Scaladoc for Int/RichInt to find the answer.
+    *
+    * @param n the number of odd integers in the range
+    * @return a Range of odd integers, excluding the last add integer
+    */
   def oddRange(n: Int): Range = {
-    1.to(n*2,2)
+    1.to(n * 2, 2)
     //second digit is step - see scala-lang.org/api/current/scala/runtime/RichInt.html
   }
 
   /**
-   * Write a function that returns the minimum integer in the Array r.
-   *
-   * Your implementation must conform to the following rules:
-   *
-   * - You must use a while loop.
-   * - You may use both immutable (val) and mutable (var) variables.
-   * - You must use an if expression.
-   *
-   * @param r the array of integers
-   * @return the minimum integer in the array
-   */
+    * Write a function that returns the minimum integer in the Array r.
+    *
+    * Your implementation must conform to the following rules:
+    *
+    * - You must use a while loop.
+    * - You may use both immutable (val) and mutable (var) variables.
+    * - You must use an if expression.
+    *
+    * @param r the array of integers
+    * @return the minimum integer in the array
+    */
   def minWhile(r: Array[Int]): Int = {
-    if(r!=null) {
+    if (r != null) {
       var count = r.length
-      var min: Integer = r(count-1)
+      var min: Integer = r(count - 1)
       while (count > 0) {
         if (r(count - 1) < min)
           min = r(count - 1)
@@ -73,39 +75,55 @@ object ScalaBasics {
   }
 
   /**
-   * Write a function that returns the minimum integer in the Array r.
-   *
-   * Your implementation must conform to the following rules:
-   *
-   * - You must use a for loop (not for comprehension).
-   * - You may use both immutable (val) and mutable (var) variables.
-   * - You may not use an if expression.
-   *
-   * @param r the array of integers
-   * @return the minimum integer in the array
-   */
+    * Write a function that returns the minimum integer in the Array r.
+    *
+    * Your implementation must conform to the following rules:
+    *
+    * - You must use a for loop (not for comprehension).
+    * - You may use both immutable (val) and mutable (var) variables.
+    * - You may not use an if expression.
+    *
+    * @param r the array of integers
+    * @return the minimum integer in the array
+    */
   def minFor(r: Array[Int]): Int = {
-      var minSoFar: Integer = r(0)
-      for (i <- 1 until r.length - 1) {
-        minSoFar = r(i).min(minSoFar) // returns r(i) if lower than min, else returns minSoFar
-      }
-      minSoFar
+    var minSoFar: Integer = r(0)
+    for (i <- 1 until r.length - 1) {
+      minSoFar = r(i).min(minSoFar) // returns r(i) if lower than min, else returns minSoFar
     }
+    minSoFar
+  }
+
   /**
-   * Write a function called minRecursive that returns the minimum integer in the Array r.
-   *
-   * Your implementation must conform to the following rules:
-   *
-   * - You may not use any loops.
-   * - You may not use any mutable (var) or immutable (val) variables.
-   *
-   * HINT: You might want to look at the Scaladoc for Array to see some
-   * useful methods you can use to solve this.
-   *
-   * @param r the array of integers
-   * @return the minimum integer in the array
-   */
-  def minRecursive(r: Array[Int]): Int = ???
+    * Write a function called minRecursive that returns the minimum integer in the Array r.
+    *
+    * Your implementation must conform to the following rules:
+    *
+    * - You may not use any loops.
+    * - You may not use any mutable (var) or immutable (val) variables.
+    *
+    * HINT: You might want to look at the Scaladoc for Array to see some
+    * useful methods you can use to solve this.
+    *
+    * @param r the array of integers
+    * @return the minimum integer in the array
+    */
+  def minRecursive(r: Array[Int]): Int = {
+//    assert(minRecursive(Array(55, 6, 24, 32, 1, 16, 12)) == 1)
+//    assert(minRecursive(Array(4, 3, 2, 5)) == 2)
+    println("length" + r.length)
+    println("last" + r(r.length-1))
+    println("pentul" + r(r.length-2))
+    if (r.length == 2)
+      r(r.length-1).min(r(r.length-2))
+    else if (r.length==1)
+      r(0)
+    else
+      minRecursive(r.take(r.length-2) :+ r(r.length-1).min(r(r.length-2)))
+    // r.take takes the left hand elements(i.e drop the last two
+    // :+ adds an element to the resulting array
+    //the right hand side after the :+ adds the lower value of the last two elements back on to the array
+  }
 
   /**
    * Return the base 36 equivalent of the BitInt b.

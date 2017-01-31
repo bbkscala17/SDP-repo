@@ -1,6 +1,5 @@
 package basics
 
-import scala.collection.mutable.ArrayBuffer
 
 /**
  * This is a singleton object containing the functions you need
@@ -111,9 +110,6 @@ object ScalaBasics {
   def minRecursive(r: Array[Int]): Int = {
 //    assert(minRecursive(Array(55, 6, 24, 32, 1, 16, 12)) == 1)
 //    assert(minRecursive(Array(4, 3, 2, 5)) == 2)
-    println("length" + r.length)
-    println("last" + r(r.length-1))
-    println("pentul" + r(r.length-2))
     if (r.length == 2)
       r(r.length-1).min(r(r.length-2))
     else if (r.length==1)
@@ -133,7 +129,9 @@ object ScalaBasics {
    * @param b a big integer
    * @return the base 36 equivalent
    */
-  def base36(b: BigInt): String = ???
+  def base36(b: BigInt): String = {
+    b.toString(36)
+  }
 
   /**
    * Splits the String s in half.
@@ -156,7 +154,9 @@ object ScalaBasics {
    * @param s the string to split
    * @return the split string as a tuple
    */
-  def splitInHalf(s: String): (String, String) = ???
+  def splitInHalf(s: String): (String, String) = {
+    (s.take(s.length/2) , s.takeRight((s.length/2)+1))
+  }
 
   /**
    * Determines if the given string s is a palindrome.

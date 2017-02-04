@@ -23,6 +23,11 @@ class Translator(fileName: String) {
     val lines = Source.fromFile(fileName).getLines
     for (line <- lines) {
       val fields = line.split(" ")
+      println(fields(0))
+      println(fields(1))
+      println(fields(2))
+      println(fields(3))
+      println(fields(4))
       if (fields.length > 0) {
         labels.add(fields(0))
         fields(1) match {

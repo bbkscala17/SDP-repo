@@ -8,11 +8,10 @@ class MulInstruction(label: String, op: String, val result: Int, val op1: Int, v
     val value2 = op2
 
     m.regs(result) = value1 * value2
-    println("Result to register" + result +  " is " + m.regs(result) + " for values " + value1 + " " + value2)
   }
 
   override def toString(): String = {
-    super.toString + " " + op1 + " + " + op2 + " to " + result
+    super.toString + " " + op1 + " * " + op2 + " to " + result
   }
 }
 

@@ -24,11 +24,6 @@ class Translator(fileName: String) {
     val lines = Source.fromFile(fileName).getLines
     for (line <- lines) {
       val fields = line.split(" ")
-      println(fields(0))
-      println(fields(1))
-      println(fields(2))
-      println(fields(3))
-      println(fields(4))
       if (fields.length > 0) {
         labels.add(fields(0))
         fields(1) match {
@@ -40,6 +35,8 @@ class Translator(fileName: String) {
             program = program :+ MulInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
           case DIV =>
             program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+          case OUT =>
+            program = program :+ OutInstruction(fields(0), fields(2).toInt)
           case LIN =>
             program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
           case x =>

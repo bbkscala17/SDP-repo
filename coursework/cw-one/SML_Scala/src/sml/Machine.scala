@@ -21,7 +21,6 @@ case class Machine(labels: Labels, prog: Vector[Instruction]) {
   def execute(): Unit = {
     while (pc < prog.length) {
       val ins = prog(pc)
-      println("instrction" + pc + " value " + prog(pc))
       pc += 1
       ins execute this
     }

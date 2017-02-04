@@ -3,3 +3,4 @@ f1 sub 2 98 33
 f2 mul 3 12 8
 f3 div 4 56 8
 f4 out 99
+f5 lin 5 55

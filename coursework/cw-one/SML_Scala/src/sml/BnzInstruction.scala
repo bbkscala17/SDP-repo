@@ -1,21 +1,19 @@
 package sml
 
-class BnzInstruction(label: String, op: String, val result: Int, val op1: Int, val op2: Int)
+class BnzInstruction(label: String, op: String, val s1: Int, val nextStmt: String)
   extends Instruction(label, op) {
 
   override def execute(m: Machine) {
-    val value1 = op1
-    val value2 = op2
+    val contentss1 = s1
 
-    m.regs(result) = value1 / value2
   }
 
   override def toString(): String = {
-    super.toString + " " + op1 + " / " + op2 + " to " + result
+    super.toString + " " + s1 + " next to execute is " + nextStmt
   }
 }
 
 object BnzInstruction {
-  def apply(label: String, result: Int, op1: Int, op2: Int) =
-    new BnzInstruction(label, "div", result, op1, op2)
+  def apply(label: String, s1: Int, nextStmt: String) =
+    new BnzInstruction(label, "bnz", s1, nextStmt)
 }

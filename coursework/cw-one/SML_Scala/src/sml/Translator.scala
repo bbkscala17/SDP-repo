@@ -1,5 +1,7 @@
 package sml
 
+import java.io._
+
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  */

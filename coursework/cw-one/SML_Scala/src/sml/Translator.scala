@@ -46,6 +46,11 @@ class Translator(fileName: String) {
         }
       }
     }
+
+//    :+ makes a new list with the old list as the first item and the element as the next item
+//    So scala> List(b) :+ 5 produces
+//    res14: List[Any] = List((1,2,3), 5)
+
     new Machine(labels, program)
   }
 }

@@ -1,15 +1,21 @@
 package sml
 
-class BnzInstruction(label: String, op: String, val s1: Int, val nextStmt: String)
+class BnzInstruction(label: String, op: String, val s1: Int, nextLabel : String)
   extends Instruction(label, op) {
 
   override def execute(m: Machine) {
-    val contentss1 = s1
-
+    println("Starting BNZ - programme counter is " + m.pc.toString)
+    val contentas1 = s1
+    println("In BNZ - here are the labels.")
+    println(m.labels)
+    val labelsArray = m.labels.toString().split(" : ")
+    m.pc = labelsArray.indexOf(nextLabel);
+    println("Ending BNZ - programme counter is now " + m.pc.toString)
   }
 
   override def toString(): String = {
-    super.toString + " " + s1 + " next to execute is " + nextStmt
+    super.toString + " " + s1 + " next to execute is " + nextLabel
+    //TODO finish
   }
 }
 

@@ -13,4 +13,12 @@ class Lec3examplestest extends FunSuite {
   test("[2] Low to high 9 to 33") {
     assert(fromTo(9, 33) == List(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33))
   }
+  test("[3] 3 x ones") {
+    assert(countOnes(List(1, 5, 6, 7, 8, 1, 4, 3, 2, 1)) ==3)
+  }
+
+  test("[4] 3 x ones using pattern matching") {
+    assert(countOnes(List(1, 5, 6, 7, 8, 1, 4, 3, 2, 1)) ==3)
+  }
+
 }

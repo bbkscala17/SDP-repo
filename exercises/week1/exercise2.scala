@@ -207,9 +207,8 @@ def askHowMuchLandToBuy(bushels: Int, price: Int) = {
 			}
 		}
 	}
-	
-
+	println("================\nHammurabi.hammurabi\n================")
+	Hammurabi.hammurabi
 }
 
-println("================\nHammurabi.hammurabi\n================")
-Hammurabi.hammurabi
+

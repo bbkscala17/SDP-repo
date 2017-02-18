@@ -39,4 +39,11 @@ object Lec3examples {
       case _ :: tail => countOnesPatternMatch(tail)
     }
   }
+
+  // misses out the case where element is Nil
+  def countTens(aList: List[Int]): Int = aList match{
+    case 10 :: tail => countTens(tail)
+    case n :: tail => countTens(tail)
+    case n :: tail => 999 //unreachable statement
+  }
 }

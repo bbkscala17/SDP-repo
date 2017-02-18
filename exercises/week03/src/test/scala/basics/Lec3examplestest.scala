@@ -21,4 +21,8 @@ class Lec3examplestest extends FunSuite {
     assert(countOnes(List(1, 5, 6, 7, 8, 1, 4, 3, 2, 1)) ==3)
   }
 
+  test("[5] 3 x tens using pattern matching") {
+    assert(countOnes(List(10, 5, 6, 7, 8, 10, 4, 3, 2, 10)) ==3)
+  }
+
 }

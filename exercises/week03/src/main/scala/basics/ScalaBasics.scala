@@ -59,18 +59,14 @@ object ScalaBasics {
     * @return the minimum integer in the array
     */
   def minWhile(r: Array[Int]): Int = {
-    if (r != null) {
-      var count = r.length
-      var min: Integer = r(count - 1)
-      while (count > 0) {
-        if (r(count - 1) < min)
-          min = r(count - 1)
-        count -= 1
-      }
-      min
-    } else {
-      0
+    var count = r.length
+    var min: Integer = r(count - 1)
+    while (count > 0) {
+      if (r(count - 1) < min)
+        min = r(count - 1)
+      count -= 1
     }
+    min
   }
 
   /**
@@ -78,7 +74,7 @@ object ScalaBasics {
     *
     * Your implementation must conform to the following rules:
     *
-    * - You must use a for loop (not for comprehension).
+    * - You must use a for loop (not for comprehension). i.e. not for(i <- 0 to 10) println(i)
     * - You may use both immutable (val) and mutable (var) variables.
     * - You may not use an if expression.
     *
@@ -155,7 +151,11 @@ object ScalaBasics {
    * @return the split string as a tuple
    */
   def splitInHalf(s: String): (String, String) = {
-    (s.take(s.length/2) , s.takeRight((s.length/2)+1))
+    if(s.length % 2 ==0){
+      (s.take(s.length/2), s.takeRight(s.length/2)) //even number of chars split in middle
+    } else {
+      (s.take(s.length/2) , s.takeRight((s.length/2)+1)) // odd num of chars put higher number on right
+    }
   }
 
   /**
@@ -163,7 +163,7 @@ object ScalaBasics {
    *
    * Your implementation must conform to the following rules:
    *
-   * - You must use a for comprehension.
+   * - You must use a "for comprehension" for(i <- 0 to 10) println(i).
    * - You may not use any other loops.
    * - You may not use any mutable (var) variables.
    *
@@ -179,7 +179,13 @@ object ScalaBasics {
    * @param s the potential palindrome
    * @return true if s is a palindrome; false otherwise
    */
-  def isPalindrome(s: String): Boolean = ???
+  def isPalindrome(s: String): Boolean = {
+    println(s.filter(!".?,;- '".contains(_)))
+    for(i <- 0 to s.length()/2
+      if(s(i) != s(s.length()-1-i))
+    ) yield false
+    true
+  }
 
   /**
    * You don't have to complete this one as we've removed it from the list 

@@ -6,4 +6,3 @@ println(countFunc("this", lines))
 
 var wordSet = lines.toSet
 var wordMap = wordSet.map(word => (word, countFunc(word, lines)))
-println(wordMap.toString)

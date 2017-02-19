@@ -12,11 +12,18 @@ object Funcs {
     * @param ls : List[A] the list to process
     * @return A list containing all but the first element of ls
     */
-  def tail[A](ls: List[A]): List[A] = 
-    ls match {
-        case _ :: tl => tl
-        case Nil => throw new IllegalArgumentException
+  def tail[A](ls: List[A]): List[A] = ls match {
+    case head :: tail => tail
+    case tail => tail
+    case Nil => throw new IllegalArgumentException
     }
+
+//Keith's answer:
+//  def tail[A](ls: List[A]): List[A] =
+//    ls match {
+//        case _ :: tl => tl
+//        case Nil => throw new IllegalArgumentException
+//    }
 
   /**
     * setHead replaces the first value in a list with a given value. If the
@@ -27,11 +34,18 @@ object Funcs {
     * @return a list whose head is `a' and whose tail is all but the first
     *         element of ls.
     **/
-  def setHead[A](ls: List[A], a: A): List[A] = 
-    ls match {
-        case hd :: tl => a :: tl
-        case Nil => List(a)
-    }
+
+  def setHead[A](ls: List[A], a: A): List[A] = ls match {
+    case Nil => List(a)
+    case head :: tail => a :: tail
+  }
+
+//  Kaith's answer:
+  //  def setHead[A](ls: List[A], a: A): List[A] =
+//    ls match {
+//        case hd :: tl => a :: tl
+//        case Nil => List(a)
+//    }
 
   /**
     * drop removes n elements from the given list. If n is greater than the
@@ -41,13 +55,21 @@ object Funcs {
     * @param n  : Int the number of elements to drop.
     * @return a list with the first n elements of ls removed, or an empty list.
     */
+
   def drop[A](ls: List[A], n: Int): List[A] = ls match {
-    case Nil => Nil
-    case _ :: tl => n match {
-        case 1 => tl
-        case _ => drop(tl, n - 1)
+    case head :: tail => n match {
+      case 1 => tail
+      case _ => drop(tail, n - 1)
     }
   }
+//  Keith's answer:
+//  def drop[A](ls: List[A], n: Int): List[A] = ls match {
+//    case Nil => Nil
+//    case _ :: tl => n match {
+//        case 1 => tl
+//        case _ => drop(tl, n - 1)
+//    }
+//  }
 
   /**
     * init takes a list and removes the last element.

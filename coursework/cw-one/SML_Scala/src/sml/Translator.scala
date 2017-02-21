@@ -2,6 +2,11 @@ package sml
 
 import java.io._
 
+import java.nio.charset.Charset;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  */
@@ -27,19 +32,24 @@ class Translator(fileName: String) {
       val fields = line.split(" ")
       if (fields.length > 0) {
         labels.add(fields(0))
-        println("classname " + fields(1))
-        val className = fields(1)(0).toUpper  + fields(1).substring(1,3) + "Instruction"
-//        + fields(1)(1) + fields(1)(2)
-
+        val className = "sml." + fields(1)(0).toUpper  + fields(1).substring(1,3) + "Instruction"
+//        val ai = new AddInstruction("S", "S", 1, 1, 1);
+//        println(ai.getClass())
         println("classname " + className)
+        println(Class.forName(className))
         try {
                 val actualClass = Class.forName(className)
-                try {
-                  val instance = actualClass.newInstance("label", 1, "test")
-                  println("instance is "  + instance)
-                  val args = "args"
-  //                program = program :+ instance(args)
+                println("actual class = "  + actualClass)
 
+                try {
+                  val constructors = actualClass.getDeclaredConstructors();
+                  if(constructors.length >1) {
+                    for (constructor <- constructors) {
+                      println(constructor)
+                    }
+                  } else {
+                    println("Execute insn")
+                  }
                 }
                 catch {
                   case ex: ClassNotFoundException =>

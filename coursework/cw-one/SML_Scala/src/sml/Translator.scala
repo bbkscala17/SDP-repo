@@ -48,8 +48,13 @@ class Translator(fileName: String) {
                       println(constructor)
                     }
                   } else {
-                    println("Execute insn")
-                  }
+                    println("Execute insn.  must provide for where more thn one possible contructor")
+                      println("param types")
+                      val params = constructors(0).getGenericParameterTypes()
+                      for(param <- params){
+                        println(param)
+                      }
+                    }
                 }
                 catch {
                   case ex: ClassNotFoundException =>

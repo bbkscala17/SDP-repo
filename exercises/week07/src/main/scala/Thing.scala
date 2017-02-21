@@ -20,7 +20,7 @@ object FooMain extends App {
     try {
       val actualClass = Class.forName(className)
       val foo = actualClass.newInstance.asInstanceOf[Instruction]
-      println("foo"  + foo)
+      println("foo is "  + foo)
       println(foo.action("Crash the machine"))
     }
     catch {

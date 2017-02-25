@@ -229,7 +229,7 @@ object ScalaBasics {
    * @return a map from words to the number of times that word was seen
    */
   def wordCounter(lines: Array[String]): Map[String, Int] = {
-    var setMap = lines.toSet.map((word: String) => (word, lines.count(_ == word)))
-    setMap.toMap[String, Int]
+    val flatlist = lines.flatMap(_.split(" ")).toList
+    flatlist.map(word => (word, flatlist.count(_ == word))).toMap
   }
 }

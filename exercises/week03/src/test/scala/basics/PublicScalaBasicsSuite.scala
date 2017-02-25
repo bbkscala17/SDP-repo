@@ -114,16 +114,22 @@ class PublicScalaBasicsSuite extends FunSuite {
     }
   }
 
-  // test("[3] sumChars should sum up the characters as integers from its parameters") {
-  //   TreeTraversals.getMethod("src/main/scala/basics/ScalaBasics.scala", "sumChars") match {
-  //     case Some(method) =>
-  //       assert(TreeTraversals.hasVarDef(method), "Your implementation did not use a var declaration")
-  //       assert(TreeTraversals.hasForEach(method), "You implementation must use a for loop")
-  //     case None =>
-  //       fail("The method isPalindrome does not exist")
-  //   }
-  //   assert(sumChars("chicken".toCharArray: _*) == 725, "chicken should sum to 725")
-  //   assert(sumChars("the true sign of intelligence is not ...".toCharArray: _*) == 3601, "this should sum to 3601")
-  // }
+    test("[7] This string is six words long.") {
+      val lines = Array("this is a sentence.", "this is a sentence too!", "this is a sentence.")
+      val map = Map("this" -> 3, "is" -> 3, "a" -> 3, "too!" -> 1, "sentence." -> 2, "sentence" -> 1);
+      assert(wordCounter(lines) == map)
+    }
+
+//   test("[3] sumChars should sum up the characters as integers from its parameters") {
+//     TreeTraversals.getMethod("src/main/scala/basics/ScalaBasics.scala", "sumChars") match {
+//       case Some(method) =>
+//         assert(TreeTraversals.hasVarDef(method), "Your implementation did not use a var declaration")
+//         assert(TreeTraversals.hasForEach(method), "You implementation must use a for loop")
+//       case None =>
+//         fail("The method isPalindrome does not exist")
+//     }
+//     assert(sumChars("chicken".toCharArray: _*) == 725, "chicken should sum to 725")
+//     assert(sumChars("the true sign of intelligence is not ...".toCharArray: _*) == 3601, "this should sum to 3601")
+//   }
 
 }

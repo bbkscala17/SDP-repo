@@ -14,7 +14,7 @@ object Test extends App {
     prod match {
       case prod: AppleProduct => prod.fallFromTree(); prod.ripen()
       case prod: OnionProduct => prod.chop(); prod.cook()
-      case _ => throw new ClassCastException
+      case _ => println("unrecognised type so using default object and not calling any methods")
     }
-    }
+  }
 }

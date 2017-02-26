@@ -6,6 +6,7 @@ class ConcreteCreator extends Creator {
     case "apple" => new AppleProduct (description)
     case "onion" => new OnionProduct (description)
     case "Onion" => new OnionProduct (description)
+    case _ => new ConcreteProduct(description) //fallback
   }
 
 

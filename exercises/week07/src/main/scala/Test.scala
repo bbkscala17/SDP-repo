@@ -1,4 +1,4 @@
-import Factory.{ConcreteCreator}
+import Factory.{AppleProduct, ConcreteCreator, OnionProduct}
 
 object Test extends App {
   val onionProd = new ConcreteCreator().factory("onion")
@@ -11,5 +11,10 @@ object Test extends App {
     var typ = readLine("enter item to create as apple or onion")
     val prod = new ConcreteCreator().factory(typ)
     println("Resulting object class: " + prod.getClass)
+    prod match {
+      case prod: AppleProduct => prod.fallFromTree(); prod.ripen()
+      case prod: OnionProduct => prod.chop(); prod.cook()
+      case _ => throw new ClassCastException
+    }
     }
 }

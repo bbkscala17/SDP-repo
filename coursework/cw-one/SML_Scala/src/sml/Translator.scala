@@ -31,29 +31,33 @@ class Translator(fileName: String) {
     for (line <- lines) {
       val fields = line.split(" ")
       if (fields.length > 0) {
-        labels.add(fields(0))
-        val className = "sml." + fields(1)(0).toUpper  + fields(1).substring(1,3) + "Instruction"
-//        val ai = new AddInstruction("S", "S", 1, 1, 1);
-//        println(ai.getClass())
-        println("classname " + className)
-        println(Class.forName(className))
+        val label = fields(0)
+        labels.add(label)
+        val opcode = fields(1)(0).toUpper  + fields(1).substring(1,3) // capitalise first letter: add -> Add
+        val className = "sml." + opcode + "Instruction"
+        println()
+
         try {
                 val actualClass = Class.forName(className)
                 println("actual class = "  + actualClass)
-
+//                val inst: Instruction = actualClass.newInstance.asInstanceOf[Instruction]
+//                println(inst.getClass)
                 try {
-                  val constructors = actualClass.getDeclaredConstructors();
-                  if(constructors.length >1) {
+                  val constructors = actualClass.getDeclaredConstructors()
+                  if(constructors.nonEmpty) {
                     for (constructor <- constructors) {
                       println(constructor)
+                      val const: Any = constructor.newInstance(label, opcode, 1,2,3)
+                      println("got object of class: " + const)
                     }
                   } else {
-                    println("Execute insn.  must provide for where more thn one possible contructor")
+                    println("Execute insn.  must provide for where more than one possible contructor")
                       println("param types")
                       val params = constructors(0).getGenericParameterTypes()
                       for(param <- params){
                         println(param)
                       }
+//                    (actualClass.toString).substring(0,2)
                     }
                 }
                 catch {

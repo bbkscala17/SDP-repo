@@ -6,13 +6,13 @@ import scala.collection.mutable.ArrayBuffer
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  */
 class Translator(fileName: String) {
-  private final val ADD = "add"
-  private final val DIV = "div"
-  private final val LIN = "lin"
-  private final val BNZ = "bnz"
-  private final val MUL = "mul"
-  private final val SUB = "sub"
-  private final val OUT = "out"
+//  private final val ADD = "add"
+//  private final val DIV = "div"
+//  private final val LIN = "lin"
+//  private final val BNZ = "bnz"
+//  private final val MUL = "mul"
+//  private final val SUB = "sub"
+//  private final val OUT = "out"
 
   /**
     * translate the small program in the file into lab (the labels) and prog (the program)
@@ -37,31 +37,31 @@ class Translator(fileName: String) {
                   val constructors = actualClass.getDeclaredConstructors()
                   if(constructors.length ==1) {
                     val constructor = constructors(0)
-                      println("Constructor")
-                      println(constructor)
+//                      println("Constructor")
+//                      println(constructor)
                       val paramTypes = constructor.getGenericParameterTypes
                       val startIndexForArgs = 2
                       for(index <- startIndexForArgs until paramTypes.length) {
                         val thisParam = paramTypes(index)
-                        println("param" + thisParam)
+//                        println("param" + thisParam)
                         if (thisParam.toString == "class java.lang.String") {
-                          println("is string")
+//                          println("is string")
                           argsToUse += fields(index)
                         } else if (thisParam.toString == "int") {
                           argsToUse += new Integer(fields(index).toInt)    //must box int to Integer otherwise get error the result type of an implicit conversion must be more specific than AnyRef
                         }
                       }
 
-
                       val params = Seq(label, opcode) ++ argsToUse
-                      println("params")
-                      for(param <- params){
-                        println(param)
-                        println(param.getClass)
-                      }
-                      println("end params")
-                      val obj = constructor.newInstance(params: _*)
-                      println("got new object" + obj)
+//                      println("params")
+//                      for(param <- params){
+//                        println(param)
+//                        println(param.getClass)
+//                      }
+//                      println("end params")
+                      val obj = constructor.newInstance(params: _*).asInstanceOf[Instruction]
+                      println("got new object: " + obj)
+                      program = program :+ obj
 
                   } else {
                     println("Only objects with one constructor are supported")
@@ -77,25 +77,24 @@ class Translator(fileName: String) {
             println(s"No class of instruction [$className]")
         }
 
-
-        fields(1) match {
-          case ADD =>
-            program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case SUB =>
-            program = program :+ SubInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case MUL =>
-            program = program :+ MulInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case DIV =>
-            program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case OUT =>
-            program = program :+ OutInstruction(fields(0), fields(2).toInt)
-          case LIN =>
-            program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
-          case BNZ =>
-            program = program :+ BnzInstruction(fields(0), fields(2).toInt, fields(3))
-          case x =>
-            println(s"Unknown instruction $x")
-        }
+//        fields(1) match {
+//          case ADD =>
+//            program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//          case SUB =>
+//            program = program :+ SubInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//          case MUL =>
+//            program = program :+ MulInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//          case DIV =>
+//            program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
+//          case OUT =>
+//            program = program :+ OutInstruction(fields(0), fields(2).toInt)
+//          case LIN =>
+//            program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
+//          case BNZ =>
+//            program = program :+ BnzInstruction(fields(0), fields(2).toInt, fields(3))
+//          case x =>
+//            println(s"Unknown instruction $x")
+//        }
       }
     }
 

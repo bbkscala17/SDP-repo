@@ -37,7 +37,8 @@ class Translator(fileName: String) {
         val opcode = fields(1)(0).toUpper  + fields(1).substring(1,3) // capitalise first letter: add -> Add
         val className = "sml." + opcode + "Instruction"
         println()
-        val newfields = fields.takeRight(2)
+        val newfields = fields.filter(x => fields.indexOf(x)>1)
+        println("newfields length" + newfields.length)
 
 
         try {

@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type
 
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
@@ -46,15 +47,21 @@ class Translator(fileName: String) {
                   val constructors = actualClass.getDeclaredConstructors()
                   if(constructors.nonEmpty) {
                     for (constructor <- constructors) {
+                      println("Constructor")
                       println(constructor)
-                      val const: Any = constructor.newInstance(label, opcode, 1,2,3)
-                      println("got object of class: " + const)
+                      val params = constructor.getParameters()
+                      println("Count" + params.length)
+                      if(params.length==5){
+                        val obj = constructor.newInstance("test", "test2",new Integer(1),new Integer(2), new Integer(3))
+                        println("Got object " + obj.getClass)
+                      }
                     }
                   } else {
                     println("Execute insn.  must provide for where more than one possible contructor")
                       println("param types")
-                      val params = constructors(0).getGenericParameterTypes()
+                      val params = constructors(0).getParameters()
                       for(param <- params){
+                        println("param")
                         println(param)
                       }
 //                    (actualClass.toString).substring(0,2)

@@ -6,6 +6,7 @@ object Test extends App {
 
   /**
     * Exercise 1 Factory Pattern
+    * The key thing with the factory pattern is that the object's type is decided dynamically at run time
     */
 
   println("Exercise 1 - Factory Pattern")
@@ -34,12 +35,27 @@ object Test extends App {
   println("Exercise 2 - Singleton Pattern")
 
   object MySingleton {
-    def areYouThere() = println("Yes I am here.  My hashcode is " + this.hashCode() + " and to string is " + this.toString())
+    def areYouThere() = {
+      "Yes I am here.  My system hashcode is " + System.identityHashCode(this) + " and to string is " + this.toString()
+    }
   }
 
   println("Are you there? " + MySingleton.areYouThere())
-  println("Are you still there? " + MySingleton.areYouThere())
-  println("Are you still there again? " + MySingleton.areYouThere())
+  println("Are you the same object? " + MySingleton.areYouThere())
+  println("Are you still the same object? " + MySingleton.areYouThere())
+
+
+  /**
+    * from "Scala & Design Patterns" Lokke 2009 P43 "The presence of a singleton object allows to
+    * implement a straightforward version of the pattern.  If the ability to extend the singleton is important,
+    * an alternative solutio using companion object exists.  The example of the Singleton class
+    * with a private constructor and companion object would be as in the Singleton class in this package
+    */
+
+  val s = Singleton.getInstance()
+  println("Are you there? " + System.identityHashCode(s))
+  println("Are you the same object? " + System.identityHashCode(s))
+  println("Are you still the same object? " + System.identityHashCode(s))
 
   /**
     * Lazy initialisation
@@ -69,9 +85,12 @@ object Test extends App {
   println("Got SingletonLazyDoubleCheck" + sdc.getClass)
   println("Got SingletonLazyDoubleCheck" + sdc2.getClass)
   sdc match {
-    case sdc2 => println("sdc and sdc2 are the same - sdc " + sdc.toString + " sdc2 " + sdc2.toString)
+    case sdc2 => println("sdc and sdc2 are the same - sdc " + System.identityHashCode(sdc) + " sdc2 " + System.identityHashCode(sdc2))
     case _ => println("sdc and sdc2 do not match")
   }
+
+
+  // TODO explore breaking the Singleton pattern with multi thread
 
 
   /**

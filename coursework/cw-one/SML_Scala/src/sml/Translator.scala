@@ -37,6 +37,8 @@ class Translator(fileName: String) {
         val opcode = fields(1)(0).toUpper  + fields(1).substring(1,3) // capitalise first letter: add -> Add
         val className = "sml." + opcode + "Instruction"
         println()
+        val newfields = fields.takeRight(2)
+
 
         try {
                 val actualClass = Class.forName(className)
@@ -49,16 +51,21 @@ class Translator(fileName: String) {
                     for (constructor <- constructors) {
                       println("Constructor")
                       println(constructor)
-                      val params = constructor.getParameters()
-                      println("Count" + params.length)
-                      val newparams = Seq("String", "String") ++ params
-                      println(newparams)
+                      val params = Seq(label, opcode) ++ newfields
+                      println("params")
+                      for(param <- params){
+                        println(param)
+                      }
+//                      val params = constructor.getParameters()
+//                      println("Count" + params.length)
+//                      val newparams = Seq("String", "String") ++ params
+//                      println(newparams)
 //                      if(params.length==5){
 //                        val obj = constructor.newInstance("test", "test2",new Integer(1),new Integer(2), new Integer(3))
 //                        println("Got object " + obj.getClass)
 //                      }
 //                       new Integer(1),new Integer(2), new Integer(3))
-                      val obj2 = constructor.newInstance(newparams: _*)
+                      val obj2 = constructor.newInstance(params: _*)
                     }
                   } else {
                     println("Execute insn.  must provide for where more than one possible contructor")

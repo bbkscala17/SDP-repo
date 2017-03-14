@@ -51,10 +51,14 @@ class Translator(fileName: String) {
                       println(constructor)
                       val params = constructor.getParameters()
                       println("Count" + params.length)
-                      if(params.length==5){
-                        val obj = constructor.newInstance("test", "test2",new Integer(1),new Integer(2), new Integer(3))
-                        println("Got object " + obj.getClass)
-                      }
+                      val newparams = Seq("String", "String") ++ params
+                      println(newparams)
+//                      if(params.length==5){
+//                        val obj = constructor.newInstance("test", "test2",new Integer(1),new Integer(2), new Integer(3))
+//                        println("Got object " + obj.getClass)
+//                      }
+//                       new Integer(1),new Integer(2), new Integer(3))
+                      val obj2 = constructor.newInstance(newparams: _*)
                     }
                   } else {
                     println("Execute insn.  must provide for where more than one possible contructor")

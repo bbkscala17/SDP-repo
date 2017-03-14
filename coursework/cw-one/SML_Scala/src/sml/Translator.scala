@@ -38,6 +38,10 @@ class Translator(fileName: String) {
         val className = "sml." + opcode + "Instruction"
         println()
         val newfields = fields.filter(x => fields.indexOf(x)>1)
+          val newfields2= newfields.map( x => {
+            x.toInt
+        })
+        newfields2.map(x => println(x))
         println("newfields length" + newfields.length)
 
 
@@ -52,11 +56,13 @@ class Translator(fileName: String) {
                     for (constructor <- constructors) {
                       println("Constructor")
                       println(constructor)
-                      val params = Seq(label, opcode) ++ newfields
+                      val params = Seq(label, opcode) ++ newfields2
                       println("params")
                       for(param <- params){
                         println(param)
+                        println(param.getClass)
                       }
+                      println("end params")
 //                      val params = constructor.getParameters()
 //                      println("Count" + params.length)
 //                      val newparams = Seq("String", "String") ++ params
@@ -67,6 +73,7 @@ class Translator(fileName: String) {
 //                      }
 //                       new Integer(1),new Integer(2), new Integer(3))
                       val obj2 = constructor.newInstance(params: _*)
+                      println("got new object" + obj2)
                     }
                   } else {
                     println("Execute insn.  must provide for where more than one possible contructor")

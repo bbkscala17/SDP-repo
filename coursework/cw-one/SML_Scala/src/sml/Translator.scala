@@ -1,12 +1,6 @@
 package sml
 
-import java.io._
-
-import java.nio.charset.Charset;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type
+import scala.collection.mutable.ArrayBuffer
 
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
@@ -24,66 +18,53 @@ class Translator(fileName: String) {
     * translate the small program in the file into lab (the labels) and prog (the program)
     */
   def readAndTranslate(m: Machine): Machine = {
-//    println(AddInstruction.getInterfaces().getClass())
     val labels = m.labels
     var program = m.prog
     import scala.io.Source
     val lines = Source.fromFile(fileName).getLines
     for (line <- lines) {
       val fields = line.split(" ")
-      if (fields.length > 0) {
+      if (fields.nonEmpty) {
         val label = fields(0)
         labels.add(label)
-        val opcode = fields(1)(0).toUpper  + fields(1).substring(1,3) // capitalise first letter: add -> Add
+        val opcode = fields(1)(0).toUpper + fields(1).substring(1,3) // capitalise first letter: add -> Add
         val className = "sml." + opcode + "Instruction"
-        println()
-        val newfields = fields.filter(x => fields.indexOf(x)>1)
-          val newfields2= newfields.map( x => {
-            x.toInt
-        })
-        newfields2.map(x => println(x))
-        println("newfields length" + newfields.length)
-
-
+//        val args = fields.filter(x => fields.indexOf(x)>1) // remove first two strings to leave only args at end
         try {
+                var argsToUse: ArrayBuffer[Object] = new ArrayBuffer()
                 val actualClass = Class.forName(className)
-                println("actual class = "  + actualClass)
-//                val inst: Instruction = actualClass.newInstance.asInstanceOf[Instruction]
-//                println(inst.getClass)
                 try {
                   val constructors = actualClass.getDeclaredConstructors()
-                  if(constructors.nonEmpty) {
-                    for (constructor <- constructors) {
+                  if(constructors.length ==1) {
+                    val constructor = constructors(0)
                       println("Constructor")
                       println(constructor)
-                      val params = Seq(label, opcode) ++ newfields2
+                      val paramTypes = constructor.getGenericParameterTypes
+                      val startIndexForArgs = 2
+                      for(index <- startIndexForArgs until paramTypes.length) {
+                        val thisParam = paramTypes(index)
+                        println("param" + thisParam)
+                        if (thisParam.toString == "class java.lang.String") {
+                          println("is string")
+                          argsToUse += fields(index)
+                        } else if (thisParam.toString == "int") {
+                          argsToUse += new Integer(fields(index).toInt)    //must box int to Integer otherwise get error the result type of an implicit conversion must be more specific than AnyRef
+                        }
+                      }
+
+
+                      val params = Seq(label, opcode) ++ argsToUse
                       println("params")
                       for(param <- params){
                         println(param)
                         println(param.getClass)
                       }
                       println("end params")
-//                      val params = constructor.getParameters()
-//                      println("Count" + params.length)
-//                      val newparams = Seq("String", "String") ++ params
-//                      println(newparams)
-//                      if(params.length==5){
-//                        val obj = constructor.newInstance("test", "test2",new Integer(1),new Integer(2), new Integer(3))
-//                        println("Got object " + obj.getClass)
-//                      }
-//                       new Integer(1),new Integer(2), new Integer(3))
-                      val obj2 = constructor.newInstance(params: _*)
-                      println("got new object" + obj2)
-                    }
+                      val obj = constructor.newInstance(params: _*)
+                      println("got new object" + obj)
+
                   } else {
-                    println("Execute insn.  must provide for where more than one possible contructor")
-                      println("param types")
-                      val params = constructors(0).getParameters()
-                      for(param <- params){
-                        println("param")
-                        println(param)
-                      }
-//                    (actualClass.toString).substring(0,2)
+                    println("Only objects with one constructor are supported")
                     }
                 }
                 catch {

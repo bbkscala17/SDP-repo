@@ -38,7 +38,8 @@ class Translator(fileName: String) {
                   try {
                     argsToUse += new Integer(fields(index).toInt) //must box int to Integer otherwise get error the result type of an implicit conversion must be more specific than AnyRef
                   } catch {
-                    case _ => throw new IllegalArgumentException(s"Instruction type [$className] requires int not string for this arg - illegal text: " + fields(index))
+                    case IllegalArgumentException => throw new IllegalArgumentException(s"Instruction type [$className] requires int not string for this arg - illegal text: " + fields(index))
+                    case _ => throw new Exception(s"Exception with classname [$className]")
                   }
                 }
               }

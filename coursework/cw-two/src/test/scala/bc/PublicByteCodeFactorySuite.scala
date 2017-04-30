@@ -16,6 +16,10 @@ class PublicByteCodeFactorySuite extends FunSuite with ByteCodeValues {
     // Test the iconst bytecode
     val bc = bcf.make(bytecode("iconst"), 4)
     assert(bc.code == bytecode("iconst"))
+
+    val bc2 = bcf.make(bytecode("iconst"), 10)
+    assert(bc2.code == bytecode("iconst"))
+
   }
 
   test("[3] an invalid bytecode should throw an exception") {

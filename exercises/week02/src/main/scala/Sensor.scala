@@ -4,7 +4,7 @@ trait Sensor {
 
   def getLocation: String
 
-  def getSensortype: String
+  def getSensorType: String
 
   def getBatteryPercentage: Int
 }

@@ -5,7 +5,7 @@ class SecurityControlUnit extends ControlUnit {
 
   override def pollSensors(): Unit = {
       if(timecheck()){
-        super.pollSensors(super.securitySensors)
+        super.pollSensors(securitySensors)
       }
   }
 
@@ -14,7 +14,7 @@ class SecurityControlUnit extends ControlUnit {
       val currentHour = now.get(Calendar.HOUR_OF_DAY)
       currentHour match {
         case x if x < 6 => true
-        case y if y > 22 => true
+        case y if y >= 22 => true
         case _ => false
       }
   }

@@ -5,7 +5,6 @@ class FireSensor (loc: String) extends BatteryPoweredSensor {
   private val batteryDrainFactor: Int = 5
   private val triggerChance = 5
   private var location: String = loc
-  private val sensorType: String = "Fire Sensor"
 
 
   def isTriggered: Boolean = {
@@ -19,7 +18,7 @@ class FireSensor (loc: String) extends BatteryPoweredSensor {
 
   def getLocation: String = location
 
-  def getSensorType: String = sensorType
+  def getSensorType: String = "Fire"
 
   override def getCategory: String = "hazard"
 

@@ -1,7 +1,7 @@
 class ControlUnit {
   private val sensorManager: SensorManager = new SensorManager
   private val hazardSensors = sensorManager.getHazardSensors()
-  private val securitySensors = sensorManager.getSecuritySensors()
+  protected val securitySensors = sensorManager.getSecuritySensors()
 
   def pollSensors(sensors: List[Sensor]): Unit = {
     for (sensor <- sensors) {

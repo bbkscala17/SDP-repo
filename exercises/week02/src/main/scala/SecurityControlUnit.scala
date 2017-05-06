@@ -1,15 +1,21 @@
 import java.util.Calendar
 
 class SecurityControlUnit extends ControlUnit {
-  override def pollSensors(): Unit = {
-    val now = Calendar.getInstance()
-    val currentHour = now.get(Calendar.HOUR_OF_DAY)
-    if(currentHour < 6 || currentHour >= 22 ){
-      println("night")
-  } else {
-      println("day")
-    }
+  private val SECURITY: String = "security"
 
-  //  private def timecheck(): Boolean ={
-}
+  override def pollSensors(): Unit = {
+      if(timecheck()){
+        super.pollSensors(super.securitySensors)
+      }
+  }
+
+    private def timecheck(): Boolean ={
+      val now = Calendar.getInstance()
+      val currentHour = now.get(Calendar.HOUR_OF_DAY)
+      currentHour match {
+        case x if x < 6 => true
+        case y if y > 22 => true
+        case _ => false
+      }
+  }
 }

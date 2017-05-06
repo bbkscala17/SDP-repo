@@ -6,4 +6,6 @@ trait Sensor {
 
   def getSensorType: String
 
+  def getCategory: String
+
 }

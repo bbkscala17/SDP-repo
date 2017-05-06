@@ -20,6 +20,8 @@ class SmokeSensor (loc: String) extends BatteryPoweredSensor {
 
   def getSensorType: String = "Smoke Sensor"
 
+  override def getCategory: String = "hazard"
+
   def getBatteryPercentage: Int = {
     batteryLevel
   }

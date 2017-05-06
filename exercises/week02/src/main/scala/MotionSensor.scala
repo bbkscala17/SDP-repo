@@ -4,4 +4,6 @@ class MotionSensor extends Sensor{
   override def getLocation: String = ???
 
   override def getSensorType: String = ???
+
+  override def getCategory: String = "security"
 }

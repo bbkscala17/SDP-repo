@@ -24,6 +24,8 @@ public class Driver {
 
         System.out.println(aStorage.getValue().showBalance());
 
+        System.out.println(aStorage.getClass());
+        System.out.println(sStorage.getClass());
         if(aStorage.getClass() == sStorage.getClass()){
             System.out.println("EQUAL");
         } else {
@@ -88,4 +90,7 @@ public class Driver {
 //Q7 if i add the code specified then the runtime output is
 //        115.0
 //        EQUAL
+// The value of aStorage is what you wouild expect as it is 100 balance + 15
+// The "EQUAL" is also what you would expect as both sStorage and aStorage are of type Storage
+// and the fact that one might be Storage<String> does not affect this.
 

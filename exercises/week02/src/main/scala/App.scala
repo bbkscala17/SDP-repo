@@ -5,9 +5,11 @@
 object App extends App{
   println("Control unit started")
   val controlUnit: ControlUnit  = new ControlUnit ()
+  val securityControlUnit: ControlUnit  = new SecurityControlUnit()
   for(x <- 1 to 10){
     println(x)
     controlUnit.pollSensors()
+    securityControlUnit.pollSensors()
   }
 }
 //

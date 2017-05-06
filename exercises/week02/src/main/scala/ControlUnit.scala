@@ -1,5 +1,5 @@
 
-class ControlUnit {
+
 
   import scala.collection.mutable.ListBuffer
 
@@ -17,12 +17,16 @@ class ControlUnit {
         }
       }
     }
+    object ControlUnit
   }
 
-  object ControlUnit
-}
 
 object main extends App{
   println("Control unit started")
   args foreach println
+  val contUnit = new ControlUnit
+  for(x <- 1 to 1000){
+    println(x)
+    contUnit.pollSensors()
+  }
 }

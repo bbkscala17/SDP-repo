@@ -1,9 +1,10 @@
 import scala.collection.mutable.ListBuffer
 
-class ControlUnit (sensorList: ListBuffer[Sensor]){
-  private val sensors: ListBuffer[Sensor] = sensorList
+class ControlUnit (sensorMan: SensorManager){
+  private val sensorManager: SensorManager = sensorMan
 
   def pollSensors() {
+    val sensors = sensorManager.getSensors
     for (sensor <- sensors) {
       if (sensor.isTriggered) {
         System.out.println("A " + sensor.getSensorType + " sensor was triggered at " + sensor.getLocation)

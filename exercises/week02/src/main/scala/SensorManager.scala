@@ -11,5 +11,8 @@ class SensorManager {
     scannedSensors.append(new FireSensor)
     scannedSensors.append(new SmokeSensor("1st Floor"))
   }
+  def getSensors(): ListBuffer[Sensor] = {
+    sensors
+  }
 
 }

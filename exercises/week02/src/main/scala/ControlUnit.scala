@@ -1,5 +1,3 @@
-import scala.collection.mutable.ListBuffer
-
 class ControlUnit (sensorMan: SensorManager){
   private val sensorManager: SensorManager = sensorMan
 

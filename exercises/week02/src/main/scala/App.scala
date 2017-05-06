@@ -6,7 +6,7 @@ object App extends App{
   println("Control unit started")
   val sensorManager: SensorManager = new SensorManager
   val controlUnit: ControlUnit  = new ControlUnit (sensorManager)
-  for(x <- 1 to 1000){
+  for(x <- 1 to 10){
     println(x)
     controlUnit.pollSensors()
   }

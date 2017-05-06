@@ -1,8 +1,5 @@
-import scala.collection.mutable.ListBuffer
-
 class SensorManager {
   private val allSensors: List[Sensor] = initialiseSensors
-
 
   def initialiseSensors(): List[Sensor] = {
     // scans for all sensors on setup and returns a list of them
@@ -13,4 +10,5 @@ class SensorManager {
   def getSensors(): List[Sensor] = {
     allSensors
   }
+
 }

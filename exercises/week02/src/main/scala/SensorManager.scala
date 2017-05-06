@@ -1,18 +1,16 @@
 import scala.collection.mutable.ListBuffer
 
 class SensorManager {
-  private val sensors: ListBuffer[Sensor] = initialiseSensors
+  private val allSensors: List[Sensor] = initialiseSensors
 
 
-  // scan for all sensors and add to list buffer
-  // to be implemented - hard coded for now
-  def initialiseSensors(): ListBuffer[Sensor] = {
-    var scannedSensors = new ListBuffer[Sensor]
-    scannedSensors.append(new FireSensor)
-    scannedSensors.append(new SmokeSensor("1st Floor"))
-  }
-  def getSensors(): ListBuffer[Sensor] = {
-    sensors
+  def initialiseSensors(): List[Sensor] = {
+    // scans for all sensors on setup and returns a list of them
+    // list is hard coded for now - to be implemented properly later
+    List(new FireSensor("2nd floor"), new SmokeSensor("1st Floor"))
   }
 
+  def getSensors(): List[Sensor] = {
+    allSensors
+  }
 }

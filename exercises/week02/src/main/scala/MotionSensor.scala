@@ -1,9 +1,19 @@
-class MotionSensor extends Sensor{
-  override def isTriggered: Boolean = ???
+import scala.util.Random
 
-  override def getLocation: String = ???
+class MotionSensor (loc: String) extends Sensor{
+  private val triggerChance = 5
 
-  override def getSensorType: String = ???
+  def isTriggered: Boolean = {
+    if(Random.nextInt(100) <= triggerChance) {
+      true
+    } else {
+      false
+    }
+  }
+
+  override def getLocation: String = loc
+
+  override def getSensorType: String = "Motion"
 
   override def getCategory: String = "security"
 }

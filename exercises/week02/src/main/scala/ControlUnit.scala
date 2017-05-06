@@ -1,5 +1,5 @@
-class ControlUnit (sensorMan: SensorManager){
-  private val sensorManager: SensorManager = sensorMan
+class ControlUnit {
+  private val sensorManager: SensorManager = new SensorManager
 
   def pollSensors() {
     val sensors = sensorManager.getSensors

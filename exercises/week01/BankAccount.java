@@ -1,5 +1,5 @@
 class BankAccount {
-    private float balance;
+    private float balance = 0;
     public void deposit(float amount) {
         this.balance += amount;
     }

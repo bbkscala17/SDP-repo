@@ -1,12 +1,13 @@
 import scala.util.Random
 
 class SmokeSensor extends Sensor{
-  var battery: Int = 100;
-  val drain: Int = 20
+  var batteryLevel: Int = 0
+  val drainFactor: Int = 20
+  val triggerChance = 10
 
   def isTriggered: Boolean = {
-    if(Random.nextInt(100) <= 10) {
-      //10% chance
+    batteryLevel = drainBattery
+    if(Random.nextInt(100) <= triggerChance) {
       true
     } else {
       false
@@ -18,6 +19,9 @@ class SmokeSensor extends Sensor{
   def getSensorType: String = "Smoke Sensor"
 
   def getBatteryPercentage: Int = {
-    battery - drain
+    batteryLevel
+  }
+  def drainBattery: Int = {
+    batteryLevel - drainFactor
   }
 }

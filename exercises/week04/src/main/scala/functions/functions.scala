@@ -127,102 +127,132 @@ object Funcs {
     case Nil => 0
     case _ => foldLeft(ls, 0.0)((b, a) => b + a)
   }
+
+  def product(ls: List[Double]): Double = ???
+  def length[A](ls: List[A]): Int = ???
+  def reverse[A](ls: List[A]): List[A] = ???
+  def flatten[A](ls: List[A]): List[A] = ???
+
+  //keith old answers do not use
+//  def sum(ls: List[Double]): Double = ls match {
+//    case Nil => 0
+//    case hd :: tl => hd + sum(tl)
+//  }
+//  def product(ls: List[Double]): Double = ls match {
+//    case Nil => 1
+//    case hd :: tl => hd * product(tl)
+//  }
 //
+//  def length[A](ls: List[A]): Int = ls match {
+//    case Nil => 0
+//    case hd :: tl => 1 + length(tl)
+//  }
 //
-//  // MAP AND FILTER
-//
-//  /**
-//    * map applies a function to a list, producing a new list of the functions'
-//    * values.
-//    * As with the other functions, implement this recursively.
-//    *
-//    * @param ls : List[A] the list to be changed.
-//    * @param f  : A => B the function to be applied to each element of the input.
-//    * @return the resulting list from applying f to each element of ls.
-//    */
-//  def map[A, B](ls: List[A])(f: A => B): List[B] = ls match {
+//  def reverse[A](ls: List[A]): List[A] = ls match {
 //    case Nil => Nil
-//    case hd :: tl => f(hd) :: map(tl)(f)
+//    case hd :: tl => reverse(tl) ::: List(hd)
 //  }
 //
-//  /**
-//    * filter removes all elements from a list for which a given predicate
-//    * returns false.
-//    * As usual, this should be recursive.
-//    *
-//    * @param ls : List[A] the list to be filtered.
-//    * @param f  : A => Boolean the predicate
-//    * @return the filtered list.
-//    */
-//  def filter[A](ls: List[A])(f: A => Boolean): List[A] = ls match {
+//  def flatten[A](ls: List[A]): List[A] = ls match {
 //    case Nil => Nil
-//    case hd :: tl => if (f(hd)) hd :: filter(tl)(f) else filter(tl)(f)
+//    case (head: List[A]) :: tail => flatten(head) ::: flatten(tail)
+//    case head :: tail => head :: flatten(tail)
 //  }
-//
-//  /**
-//    * flatMap is very similar to map. However, the function returns a List,
-//    * and flatMap flattens all of the resulting lists into one.
-//    *
-//    * @param ls : List[A] the list to be changed.
-//    * @param f  : A => List[B] the function to be applied.
-//    * @return a List[B] containing the flattened results of applying f to all
-//    *         elements of ls.
-//    */
-//
-//    // Two versions - one using pattern matching and recursion
-//    // The second version also uses pm and recursion but in this case it is "tail recursion"
-//
-//  // def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = ls match {
-//  //   case (x::xs) => f(x) ++ flatMap(xs)(f)
-//  //   case _ => Nil
-//  // }
-//
-//  import scala.annotation.tailrec
-//
-//  def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = {
-//    @tailrec
-//    def helper(result: List[B])(input: List[A])(f: A => List[B]): List[B] = input match {
-//      case (x::xs) => helper(result ++ f(x))(xs)(f)
-//      case _ => result
-//    }
-//    helper(List[B]())(ls)(f)
-//  }
-//
-//
-//  // COMBINING FUNCTIONS
-//
-//  /**
-//    * maxAverage takes a List[(Double,Double)] (a list of pairs of real
-//    * numbers) and returns the average value of the largest value in each pair.
-//    * For example, the maxAverage of List((1,4), (8, 0)) is (8 + 4)/2 = 6.0.
-//    * You must use the methods you wrote above, particularly map and foldLeft.
-//    *
-//    * @param ls : List[(Double,Double)] a list of pairs of real numbers, whose
-//    *           length is greater than 0.
-//    * @return the average value of the largest values in the pairs.
-//    */
-//  def maxAverage(ls: List[(Double, Double)]): Double = {
-//    val resultList = map(ls){case (x,y) => if (x < y) y else x}
-//    sum(resultList) / length(resultList)
-//  }
-//
-//  /**
-//    * variance takes a List[Double] and calculates the squared distance
-//    * of each value from the mean. This is the *variance*, as used in
-//    * statistics.
-//    * 1) Find the mean M of the input.
-//    *
-//    * 2) For each value V in the input, calculate (V - M)^2.
-//    * 3) Find the variance.
-//    * Which methods that we've already defined can you use? (At least one!)
-//    * @param ls     : List[Double] a list of values, whose length is greater than 0.
-//    * @param return the variance of the input.
-//    */
-//  import scala.math.pow
-//
-//  def variance(ls: List[Double]): Double = {
-//    val mean = sum(ls) / length(ls)
-//    val lst = map(ls)(v => pow((v - mean),2))
-//    sum(lst) / length(lst)
-//  }
+
+  // MAP AND FILTER
+
+  /**
+    * map applies a function to a list, producing a new list of the functions'
+    * values.
+    * As with the other functions, implement this recursively.
+    *
+    * @param ls : List[A] the list to be changed.
+    * @param f  : A => B the function to be applied to each element of the input.
+    * @return the resulting list from applying f to each element of ls.
+    */
+  def map[A, B](ls: List[A])(f: A => B): List[B] = ls match {
+    case Nil => Nil
+    case hd :: tl => f(hd) :: map(tl)(f)
+  }
+
+  /**
+    * filter removes all elements from a list for which a given predicate
+    * returns false.
+    * As usual, this should be recursive.
+    *
+    * @param ls : List[A] the list to be filtered.
+    * @param f  : A => Boolean the predicate
+    * @return the filtered list.
+    */
+  def filter[A](ls: List[A])(f: A => Boolean): List[A] = ls match {
+    case Nil => Nil
+    case hd :: tl => if (f(hd)) hd :: filter(tl)(f) else filter(tl)(f)
+  }
+
+  /**
+    * flatMap is very similar to map. However, the function returns a List,
+    * and flatMap flattens all of the resulting lists into one.
+    *
+    * @param ls : List[A] the list to be changed.
+    * @param f  : A => List[B] the function to be applied.
+    * @return a List[B] containing the flattened results of applying f to all
+    *         elements of ls.
+    */
+
+    // Two versions - one using pattern matching and recursion
+    // The second version also uses pm and recursion but in this case it is "tail recursion"
+
+  // def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = ls match {
+  //   case (x::xs) => f(x) ++ flatMap(xs)(f)
+  //   case _ => Nil
+  // }
+
+  import scala.annotation.tailrec
+
+  def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = {
+    @tailrec
+    def helper(result: List[B])(input: List[A])(f: A => List[B]): List[B] = input match {
+      case (x::xs) => helper(result ++ f(x))(xs)(f)
+      case _ => result
+    }
+    helper(List[B]())(ls)(f)
+  }
+
+
+  // COMBINING FUNCTIONS
+
+  /**
+    * maxAverage takes a List[(Double,Double)] (a list of pairs of real
+    * numbers) and returns the average value of the largest value in each pair.
+    * For example, the maxAverage of List((1,4), (8, 0)) is (8 + 4)/2 = 6.0.
+    * You must use the methods you wrote above, particularly map and foldLeft.
+    *
+    * @param ls : List[(Double,Double)] a list of pairs of real numbers, whose
+    *           length is greater than 0.
+    * @return the average value of the largest values in the pairs.
+    */
+  def maxAverage(ls: List[(Double, Double)]): Double = {
+    val resultList = map(ls){case (x,y) => if (x < y) y else x}
+    sum(resultList) / length(resultList)
+  }
+
+  /**
+    * variance takes a List[Double] and calculates the squared distance
+    * of each value from the mean. This is the *variance*, as used in
+    * statistics.
+    * 1) Find the mean M of the input.
+    *
+    * 2) For each value V in the input, calculate (V - M)^2.
+    * 3) Find the variance.
+    * Which methods that we've already defined can you use? (At least one!)
+    * @param ls     : List[Double] a list of values, whose length is greater than 0.
+    * @param return the variance of the input.
+    */
+  import scala.math.pow
+
+  def variance(ls: List[Double]): Double = {
+    val mean = sum(ls) / length(ls)
+    val lst = map(ls)(v => pow((v - mean),2))
+    sum(lst) / length(lst)
+  }
 }

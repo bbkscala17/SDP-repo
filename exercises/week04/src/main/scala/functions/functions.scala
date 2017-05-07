@@ -181,6 +181,7 @@ object Funcs {
 
   // MAP AND FILTER
 
+//  Keith's answers
   /**
     * map applies a function to a list, producing a new list of the functions'
     * values.
@@ -240,7 +241,6 @@ object Funcs {
 
 
   // COMBINING FUNCTIONS
-
   /**
     * maxAverage takes a List[(Double,Double)] (a list of pairs of real
     * numbers) and returns the average value of the largest value in each pair.
@@ -252,9 +252,15 @@ object Funcs {
     * @return the average value of the largest values in the pairs.
     */
   def maxAverage(ls: List[(Double, Double)]): Double = {
-    val resultList = map(ls){case (x,y) => if (x < y) y else x}
-    sum(resultList) / length(resultList)
+    val list = map(ls)({case (x,y) => if(x > y) x else y}) // using the map function from above. passing in list ls and the function
+    sum(list) / length(list)
   }
+
+///keith's answer
+//  def maxAverage(ls: List[(Double, Double)]): Double = {
+//    val resultList = map(ls){case (x,y) => if (x < y) y else x}
+//    sum(resultList) / length(resultList)
+//  }
 
   /**
     * variance takes a List[Double] and calculates the squared distance

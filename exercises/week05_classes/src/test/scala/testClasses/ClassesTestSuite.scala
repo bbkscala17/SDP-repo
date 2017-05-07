@@ -10,4 +10,14 @@ class ClassesTestSuite extends FunSuite {
     assert(new Counter(10).inc(3).dec(1).inc.inc.count == 14)
   }
 
+  test("Case class initialise and return count") {
+    assert(new CounterCase(10).inc.dec.inc.inc.count == 12)
+  }
+  test("Case class user can use value for inc or dec") {
+    assert(new CounterCase(10).inc(3).dec(1).inc.inc.count == 14)
+  }
+
+  test("Case class with default init counter value") {
+    assert(new CounterCase().inc(3).dec(1).inc.inc.count == 4)
+  }
 }

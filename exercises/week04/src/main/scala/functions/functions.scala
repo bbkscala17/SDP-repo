@@ -124,11 +124,15 @@ object Funcs {
     * List(4,5,6))) produces List(1,2,3,4,5,6).
     */
   def sum(ls: List[Double]): Double = ls match {
-    case Nil => 0
+    case Nil => 0.0
     case _ => foldLeft(ls, 0.0)((b, a) => b + a)
   }
 
-  def product(ls: List[Double]): Double = ???
+  def product(ls: List[Double]): Double = ls match {
+    case Nil => 0.0
+    case _ => foldLeft(ls, 0.0)((b, a) => b * a)
+  }
+
   def length[A](ls: List[A]): Int = ???
   def reverse[A](ls: List[A]): List[A] = ???
   def flatten[A](ls: List[A]): List[A] = ???

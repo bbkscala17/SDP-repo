@@ -1,6 +1,7 @@
 package testClasses
 
-class Counter(counter: Int) {
+class Counter(intialCounter: Int) {
+  private var counter: Int = intialCounter
 
   def inc(): Counter = {
     inc(1)

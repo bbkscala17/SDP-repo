@@ -35,12 +35,24 @@ class FunctionsTestSuite extends FunSuite {
     assert(product(List(1.0, 2.0)) == 2.0)
   }
 
+  test("product produces the correct product 0*8*9") {
+    assert(product(List(0.0, 8.0, 9.0)) == 0.0)
+  }
+
   test("product produces the correct product") {
     assert(product(List(1.0, 2.0, 3.0, 4.0, 5.0)) == 120.0)
   }
 
   test("length calculates the length") {
     assert(length("Hello".toList) == 5)
+  }
+
+  test("length calculates the length empty") {
+    assert(length("".toList) == 0)
+  }
+
+  test("length calculates the length  longer") {
+    assert(length("This is a longer string to test".toList) == 31)
   }
 
   test("reverse reverses the list") {

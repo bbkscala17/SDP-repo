@@ -133,7 +133,11 @@ object Funcs {
     case head::tail => foldLeft(tail, head)((b, a) => b * a)
   }
 
-  def length[A](ls: List[A]): Int = ???
+  def length[A](ls: List[A]): Int = ls match {
+    case Nil => 0
+    case ls => foldLeft(ls, 0)((b, a) => 1 + b)
+  }
+
   def reverse[A](ls: List[A]): List[A] = ???
   def flatten[A](ls: List[A]): List[A] = ???
 

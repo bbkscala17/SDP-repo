@@ -146,7 +146,12 @@ object Funcs {
     case head::tail => foldLeft(tail, List[A](head))((b: List[A], a: A) => List(a) ::: b)
   }
 
-  def flatten[A](ls: List[A]): List[A] = ???
+  def flatten[A](ls: List[A]): List[A] = ls match {
+    case Nil => Nil
+    case (head: List[A]) :: tail => flatten(head) ::: flatten(tail)
+    case head :: tail => foldLeft(flatten(tail), List[A](head))((b: List[A], a: A) => b ::: List(a))
+    case _ => throw new UnknownError("???")
+  }
 
   //keith old answers do not use
 //  def sum(ls: List[Double]): Double = ls match {

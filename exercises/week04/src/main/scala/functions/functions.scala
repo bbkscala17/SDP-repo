@@ -40,13 +40,6 @@ object Funcs {
     case head :: tail => a :: tail
   }
 
-//  Kaith's answer:
-  //  def setHead[A](ls: List[A], a: A): List[A] =
-//    ls match {
-//        case hd :: tl => a :: tl
-//        case Nil => List(a)
-//    }
-
   /**
     * drop removes n elements from the given list. If n is greater than the
     * length of the list, the function returns an empty list.
@@ -57,19 +50,12 @@ object Funcs {
     */
 
   def drop[A](ls: List[A], n: Int): List[A] = ls match {
+    case Nil => Nil
     case head :: tail => n match {
       case 1 => tail
       case _ => drop(tail, n - 1)
     }
   }
-//  Keith's answer:
-//  def drop[A](ls: List[A], n: Int): List[A] = ls match {
-//    case Nil => Nil
-//    case _ :: tl => n match {
-//        case 1 => tl
-//        case _ => drop(tl, n - 1)
-//    }
-//  }
 
   /**
     * init takes a list and removes the last element.
@@ -80,10 +66,17 @@ object Funcs {
     * @return a list with the last element of ls removed.
     */
   def init[A](ls: List[A]): List[A] = ls match {
-    case Nil => throw new IllegalArgumentException
-    case _ :: Nil => Nil 
-    case hd :: tl => hd :: init(tl)
+    case Nil => throw new IllegalArgumentException // empty so error
+    case head :: Nil => Nil //Nil represents the empty list.  If only one item in list (i.e. head), can return Nil as are dropping that item
+    case head :: tail => head :: init(tail) // take the last item of list then look within it recursively to get last item of it
   }
+
+  //Keith's answer
+//  def init[A](ls: List[A]): List[A] = ls match {
+//    case Nil => throw new IllegalArgumentException
+//    case _ :: Nil => Nil
+//    case hd :: tl => hd :: init(tl)
+//  }
 
   // LIST FOLDING
 

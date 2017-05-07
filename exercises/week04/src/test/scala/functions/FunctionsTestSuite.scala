@@ -18,6 +18,7 @@ class FunctionsTestSuite extends FunSuite {
   }
 
   test("init removes the last element") {
+    println(init(List("A", "B", "Z")))
     assert(init(List("A", "B", "C", "D")) == List("A", "B", "C"))
   }
 

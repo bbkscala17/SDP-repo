@@ -81,19 +81,35 @@ object Funcs {
   // LIST FOLDING
 
   /*
-   * foldLeft reduces a list down to a single value by iteratively applying a
-   * function over the elements of the list and carrying the cumulative result
-   * along.
-   * @param ls: List[A] the list to be reduced.
-   * @param z: B the initial value
-   * @param f: (B, A) => B the binary function applied to the elements of the
-   * list and the cumulative value.
-   * @return the final valued.
-   */
+ * foldLeft reduces a list down to a single value by iteratively applying a
+ * function over the elements of the list and carrying the cumulative result
+ * along.
+ *
+ * The function is tail recursive.
+ * z is the accumulative result
+ * ls is the current list which we are reducing
+ * f is the function being used to do the reduction e.g. add a to B and return B
+ * two params are going in and the first one is a pair - foldLeft(list,accumulator)(function)
+ * foldLeft starts on the left whereas foldRight starts on the right
+ * @param ls: List[A] the list to be reduced.
+ * @param z: B the initial value
+ * @param f: (B, A) => B the binary function applied to the elements of the
+ * list and the cumulative value.
+ * @return the final valued.
+ */
   def foldLeft[A, B](ls: List[A], z: B)(f: (B, A) => B): B = ls match {
-    case hd :: tl => foldLeft(tl, f(z,hd))(f)
+    case head :: tail => foldLeft(tail, f(z, head))(f)
+    // if list contains head and tail, apply the function to (z and the head) (e.g add head to z) and then recursively call func again
+    // with the result of that as a new z, and the tail
+    // dont need an extra case for head :: Nil as we are using two items together for the function (e.g. to add them)
     case Nil => z
   }
+
+  //keith's answer
+//  def foldLeft[A, B](ls: List[A], z: B)(f: (B, A) => B): B = ls match {
+//    case hd :: tl => foldLeft(tl, f(z,hd))(f)
+//    case Nil => z
+//  }
 
   /**
     * Use your implementation of foldLeft to implement these functions:

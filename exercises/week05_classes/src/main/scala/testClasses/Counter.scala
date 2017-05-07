@@ -21,4 +21,7 @@ class Counter(counter: Int) {
 
   def count(): Int = counter
 
+  def adjust(adder: Adder): Counter ={
+    new Counter(adder.add(counter))
+  }
 }

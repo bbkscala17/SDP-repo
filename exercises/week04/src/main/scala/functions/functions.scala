@@ -123,31 +123,8 @@ object Funcs {
     * the sublists into one long list. For example, flatten(List(List(1,2,3),
     * List(4,5,6))) produces List(1,2,3,4,5,6).
     */
-  def sum(ls: List[Double]): Double = ls match {
-    case Nil => 0
-    case hd :: tl => hd + sum(tl)
-  }
 
-  def product(ls: List[Double]): Double = ls match {
-    case Nil => 1
-    case hd :: tl => hd * product(tl)
-  }
 
-  def length[A](ls: List[A]): Int = ls match {
-    case Nil => 0
-    case hd :: tl => 1 + length(tl)
-  }
-
-  def reverse[A](ls: List[A]): List[A] = ls match {
-    case Nil => Nil
-    case hd :: tl => reverse(tl) ::: List(hd)
-  }
-
-  def flatten[A](ls: List[A]): List[A] = ls match {
-    case Nil => Nil
-    case (head: List[A]) :: tail => flatten(head) ::: flatten(tail)
-    case head :: tail => head :: flatten(tail)
-  }
 
   // MAP AND FILTER
 

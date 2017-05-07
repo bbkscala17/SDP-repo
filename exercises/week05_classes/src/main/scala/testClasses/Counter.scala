@@ -3,11 +3,19 @@ package testClasses
 class Counter(counter: Int) {
 
   def inc(): Counter = {
-    new Counter(counter+1)
+    inc(1)
+  }
+
+  def inc(int: Int): Counter = {
+    new Counter(counter + int)
   }
 
   def dec(): Counter = {
-    new Counter(counter-1)
+    dec(1)
+  }
+
+  def dec(int: Int): Counter = {
+    new Counter(counter-int)
   }
 
   def count(): Int = counter

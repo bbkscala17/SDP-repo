@@ -138,7 +138,14 @@ object Funcs {
     case ls => foldLeft(ls, 0)((b, a) => 1 + b)
   }
 
-  def reverse[A](ls: List[A]): List[A] = ???
+  // calls fold left with the left hand item as the intial accumulator
+//  e.g. if the list is (1,2,3) then foldLeft is called with 1 as the accumulator and (2,3) as the rest
+//  accumulator becomes the new reversed list, as new items are added to the end of it after being removed from the start of the original list
+  def reverse[A](ls: List[A]): List[A] = ls match {
+    case Nil => Nil
+    case head::tail => foldLeft(tail, List[A](head))((b: List[A], a: A) => List(a) ::: b)
+  }
+
   def flatten[A](ls: List[A]): List[A] = ???
 
   //keith old answers do not use

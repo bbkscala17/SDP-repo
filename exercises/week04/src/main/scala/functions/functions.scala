@@ -272,13 +272,20 @@ object Funcs {
     * 3) Find the variance.
     * Which methods that we've already defined can you use? (At least one!)
     * @param ls     : List[Double] a list of values, whose length is greater than 0.
-    * @param return the variance of the input.
     */
-  import scala.math.pow
-
   def variance(ls: List[Double]): Double = {
-    val mean = sum(ls) / length(ls)
-    val lst = map(ls)(v => pow((v - mean),2))
-    sum(lst) / length(lst)
+    val sumElements = foldLeft(ls, 0.0)((b, a) => b + a) // or could just call existing sum method above which uses foldLeft
+    val average = sumElements / length(ls)
+    val variances: List[Double] = map(ls)(x => (x - average)* (x - average))
+    sum(variances) / length(variances)
   }
 }
+//Keith's answer
+//  import scala.math.pow
+//
+//  def variance(ls: List[Double]): Double = {
+//    val mean = sum(ls) / length(ls)
+//    val lst = map(ls)(v => pow((v - mean),2))
+//    sum(lst) / length(lst)
+//  }
+

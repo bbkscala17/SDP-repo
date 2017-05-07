@@ -1,7 +1,6 @@
 import java.util.Calendar
 
 class SecurityControlUnit extends ControlUnit {
-  private val SECURITY: String = "security"
 
   override def pollSensors(): Unit = {
       if(timecheck()){

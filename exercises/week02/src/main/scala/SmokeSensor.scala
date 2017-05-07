@@ -5,7 +5,6 @@ class SmokeSensor (loc: String) extends BatteryPoweredSensor {
   private val drainFactor: Int = 20
   private val triggerChance = 10
   private var location: String = loc
-  private var sensorType: String = "Smoke Sensor"
 
   def isTriggered: Boolean = {
     batteryLevel = drainBattery

@@ -2,8 +2,8 @@ class ControlUnit {
   private val sensorManager: SensorManager = new SensorManager
   private val hazardSensors = sensorManager.getHazardSensors()
   protected val securitySensors = sensorManager.getSecuritySensors()
-  private val notificationServiceFire = new NotificationServiceFire()
-  private val notificationServiceBurglary = new NotificationServiceBurglary()
+  private val notificationServiceFire: NotificationService = new NotificationServiceFire()
+  private val notificationServiceBurglary: NotificationService = new NotificationServiceBurglary()
 
   def pollSensors(sensors: List[Sensor]): Unit = {
     for (sensor <- sensors) {

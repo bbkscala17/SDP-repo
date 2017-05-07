@@ -180,9 +180,10 @@ object ScalaBasics {
    * @return true if s is a palindrome; false otherwise
    */
   def isPalindrome(s: String): Boolean = {
-    println(s.filter(!".?,;- '".contains(_)))
-    for(i <- 0 to s.length()/2
-      if(s(i) != s(s.length()-1-i))
+    println(s.filter(!".?,;- !'".contains(_))) //! before quotes is to filter for not those chars.  Also need ! in quotes to filter that
+    val filteredString = s.filter(!".?,;- !'".contains(_))
+    for(i <- 0 to filteredString.length()/2
+      if(filteredString(i) != filteredString(filteredString.length()-1-i))
     ) yield false
     true
   }

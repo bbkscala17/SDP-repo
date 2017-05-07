@@ -130,7 +130,7 @@ object Funcs {
 
   def product(ls: List[Double]): Double = ls match {
     case Nil => 0.0
-    case _ => foldLeft(ls, 0.0)((b, a) => b * a)
+    case head::tail => foldLeft(tail, head)((b, a) => b * a)
   }
 
   def length[A](ls: List[A]): Int = ???

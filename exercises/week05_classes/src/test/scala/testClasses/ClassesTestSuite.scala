@@ -34,7 +34,8 @@ class ClassesTestSuite extends FunSuite {
   test("Counter adjust"){
     assert(new Counter(new Adder(5).add(6)).count() == 11)
   }
-  test("Person class"){
+
+  test("Person class apply method"){
     val name1 = Person("John Smith").getName()
     val name2 = new Person(Array("John", "Smith")).getName()
     for(x <- 0 to name1.length-1){
@@ -44,5 +45,9 @@ class ClassesTestSuite extends FunSuite {
     }
   }
 
+//  test("PersonCase class apply method") {
+//    PersonCase("John Smith").getName()
+//    Error: Cannot resolve method PersonCase.apply
+//  }
 
 }

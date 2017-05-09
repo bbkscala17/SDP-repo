@@ -15,8 +15,8 @@ object Director{
     Director(firstName: String, lastName: String, yearBirth: Int)
   }
 
-  def older(director1: Director, director2: Director): Unit = {
-    if(director1.yearOfBirth > director2.yearOfBirth) director1
+  def older(director1: Director, director2: Director): Director = {
+    if(director1.yearOfBirth < director2.yearOfBirth) director1
     else director2
   }
 }

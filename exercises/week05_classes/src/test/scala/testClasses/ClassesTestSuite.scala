@@ -112,4 +112,13 @@ class ClassesTestSuite extends FunSuite {
     assert(highPlainsDrifter4.director == eastwood)
   }
 
+  
+
+  test("Companion object older method test") {
+    assert(Director.older(eastwood, mcTiernan) == eastwood)
+  }
+
+  test("Companion object older method test 2") {
+    assert(Director.older(someGuy, mcTiernan) == mcTiernan)
+  }
 }

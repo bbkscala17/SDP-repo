@@ -1,8 +1,8 @@
 package testClasses
 
 class Person(name: Array[String]) {
-  println("Person created with name ...")
-  for(word<-name) println(word)
+//  println("Person created with name ...")
+//  for(word<-name) println(word)
 
   def getName(): Array[String] = name
 }

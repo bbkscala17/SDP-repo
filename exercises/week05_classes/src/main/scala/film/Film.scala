@@ -5,18 +5,9 @@ class Film (name: String, yearOfRelease: Int, imdbRating: Double, dir: Director)
   def director(): Director = dir
   def directorsAge(): Int = yearOfRelease - dir.yearOfBirth
   def isDirectedBy(queryDirector: Director): Boolean = {
-    if(queryDirector.name  == dir.name && queryDirector.yearOfBirth() == dir.yearOfBirth()) {
-      true
-    } else {
-      false
-    }
+    if(queryDirector.name  == dir.name && queryDirector.yearOfBirth() == dir.yearOfBirth()) true
+    else false
   }
-
-//  def isDirectedBy(queryDirector: Director): Boolean = {
-//  println("query dir" + queryDirector.name)
-//  println("this dir" + dir.name)
-//  true
-//  }
 
   def print(): Unit ={
     println(name)

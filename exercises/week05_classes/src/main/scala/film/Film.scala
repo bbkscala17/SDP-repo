@@ -16,13 +16,17 @@ package film
 
 
    def copy(name: String = name, yearOfRelease: Int = yearOfRelease, imdbRating: Double = imdbRating, director: Director = director): Film = {
+     new Film(name, yearOfRelease, imdbRating, director)
      // previously had lots of case statements to work out if each value had changed or was still default
      // but it looks like Scala handles this so I removed them
      //  note that field names match the class level
      // seems Scala is clever enough to know that when I say name: String = name I am referring to
      // the existing instance variable as the default with the second 'name'
-     new Film(name, yearOfRelease, imdbRating, director)
    }
+
+   def copyYearZero(name: String = name, yearOfRelease: Int = 0, imdbRating: Double = imdbRating, director: Director = director): Film = {
+     new Film(name, yearOfRelease, imdbRating, director)
+     }
 
    def print(): Unit = {
      println(name)

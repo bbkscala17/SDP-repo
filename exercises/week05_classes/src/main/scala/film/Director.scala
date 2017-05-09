@@ -7,6 +7,16 @@ package film
     // from Film.scala by director.yearOfBirth
     // we cant add a getter method called yearOfBirth() if the param in constructor has same name
 
-  def name(): String = firstName + " " + lastName
+    def name(): String = firstName + " " + lastName
+}
 
+object Director{
+  def apply(firstName: String, lastName: String, yearBirth: Int): Director ={
+    Director(firstName: String, lastName: String, yearBirth: Int)
+  }
+
+  def older(director1: Director, director2: Director): Unit = {
+    if(director1.yearOfBirth > director2.yearOfBirth) director1
+    else director2
+  }
 }

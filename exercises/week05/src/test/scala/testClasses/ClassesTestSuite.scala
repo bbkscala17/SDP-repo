@@ -104,6 +104,7 @@ class ClassesTestSuite extends FunSuite {
     assert(highPlainsDrifter3.yearOfRelease == 1975)
     assert(highPlainsDrifter3.director == eastwood)
   }
+
 // now try with copyYearZero method which has year set to zero by default
   val highPlainsDrifter4 = highPlainsDrifter3.copyYearZero(name = "renamed")
   test("Copy film works with default value set to zero for year"){

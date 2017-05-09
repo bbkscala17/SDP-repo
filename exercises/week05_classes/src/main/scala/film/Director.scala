@@ -12,11 +12,15 @@ package film
 
 object Director{
   def apply(firstName: String, lastName: String, yearBirth: Int): Director ={
-    Director(firstName: String, lastName: String, yearBirth: Int)
+    new Director(firstName: String, lastName: String, yearBirth: Int)
+    // if omit the new from the second line it keeps calling itself
   }
+  // apply used to make it nicer to construct objects than using 'new' e.g. the split string example in person
+//  or if had arrays as params
 
   def older(director1: Director, director2: Director): Director = {
     if(director1.yearOfBirth < director2.yearOfBirth) director1
     else director2
   }
+  //  called from test suite by Director.older(eastwood, mcTiernan)
 }

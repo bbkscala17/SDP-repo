@@ -112,7 +112,12 @@ class ClassesTestSuite extends FunSuite {
     assert(highPlainsDrifter4.director == eastwood)
   }
 
-  
+  val applyDirector: Director = Director("Quentin", "Tarantino", 1963)
+  test("Apply method on director class") {
+    val tarantino = new Director("Quentin", "Tarantino", 1963)
+    assert(applyDirector.name == tarantino.name)
+    assert(applyDirector.yearOfBirth == tarantino.yearOfBirth)
+  }
 
   test("Companion object older method test") {
     assert(Director.older(eastwood, mcTiernan) == eastwood)

@@ -1,42 +1,36 @@
 package film
 
-class Film (filmName: String, year: Int, imdbRating: Double, dir: Director){
+ class Film (filmName: String, year: Int, imdbRating: Double, dir: Director) {
+  val name: String = filmName
+   val director: Director = dir
+   val yearOfRelease: Int = year
+   // as in film, these is needed to ensure we can call film.director etc from other class
+   // and we need to rename to 'dir' in constructor so it does not conflict
 
-  def name() = filmName
-  def yearOfRelease() = year
-  def director(): Director = dir
-  def directorsAge(): Int = year - dir.yearOfBirth
-  def isDirectedBy(queryDirector: Director): Boolean = {
-    if(queryDirector.name  == dir.name && queryDirector.yearOfBirth() == dir.yearOfBirth()) true
-    else false
-  }
+   def directorsAge(): Int = yearOfRelease - director.yearOfBirth
 
-  def copy(newName: String = "", newYearOfRelease: Int = -1, newImdbRating: Double = -1, newDir: Director = new Director("", "", -1)): Film ={
-    val finalName = newName match{
-      case "" => filmName
-      case _ => newName
-    }
-    val finalYear = newYearOfRelease match{
-      case -1 => year
-      case _ => newYearOfRelease
-    }
-    val finalImdb = newImdbRating match{
-      case -1 => imdbRating
-      case _ => newImdbRating
-    }
-    val finalDirector = newDir.yearOfBirth() match{
-      case -1 => dir
-      case _ => newDir
-    }
-    new Film(finalName, finalYear, finalImdb, finalDirector)
-  }
+   def isDirectedBy(queryDirector: Director): Boolean = {
+     if (queryDirector.name == director.name && queryDirector.yearOfBirth == director.yearOfBirth) true
+     else false
+   }
 
-  def print(): Unit ={
-    println(name)
-    println(yearOfRelease)
-    println(imdbRating)
-    println(dir)
-    println(dir.name)
-  }
 
-  }
+   def copy(name: String = name, yearOfRelease: Int = yearOfRelease, imdbRating: Double = imdbRating, director: Director = director): Film = {
+     // previously had lots of case statements to work out if each value had changed or was still default
+     // but it looks like Scala handles this so I removed them
+     //  note that field names match the class level
+     // seems Scala is clever enough to know that when I say name: String = name I am referring to
+     // the existing instance variable as the default with the second 'name'
+     new Film(name, yearOfRelease, imdbRating, director)
+   }
+
+   def print(): Unit = {
+     println(name)
+     println(yearOfRelease)
+     println(imdbRating)
+     println(director)
+     println(director.name)
+   }
+ }
+
+

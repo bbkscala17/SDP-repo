@@ -89,15 +89,21 @@ class ClassesTestSuite extends FunSuite {
     assert(invictus.isDirectedBy(eastwood) == true)
   }
 
-  val highPlainsDrifter2: Film = highPlainsDrifter.copy("L'homme des hautes plaines", 1973, 7.7, eastwood)
+  //copy method tests
+  val highPlainsDrifter2: Film = highPlainsDrifter.copy(name = "L'homme des hautes plaines")
+
   test("Copy film works"){
     assert(highPlainsDrifter2.name == "L'homme des hautes plaines")
+    assert(highPlainsDrifter2.yearOfRelease == 1973)
+    assert(highPlainsDrifter2.director == eastwood)
   }
-  val highPlainsDrifter3 = highPlainsDrifter2.copy("", 1975, 7.7, eastwood)
-  test("Copy film works with name unchanged"){
-    assert(highPlainsDrifter3.name == "L'homme des hautes plaines")
-    assert(highPlainsDrifter3.yearOfRelease() == 1975)
 
+  val highPlainsDrifter3 = highPlainsDrifter.copy(yearOfRelease = 1975)
+  test("Copy film works with name unchanged"){
+    assert(highPlainsDrifter3.name == "High Plains Drifter")
+    assert(highPlainsDrifter3.yearOfRelease == 1975)
+    assert(highPlainsDrifter3.director == eastwood)
   }
+
 
 }

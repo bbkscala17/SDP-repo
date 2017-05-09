@@ -5,7 +5,7 @@ case class PersonCase(name: Array[String]) {
   def getName(): Array[String] = name
 }
 
-object PersonCase{
+case object PersonCase{
   def apply(name:String): PersonCase = {
     new PersonCase(name.split(" "))
   }

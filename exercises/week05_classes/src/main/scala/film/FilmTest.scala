@@ -22,7 +22,7 @@ object FilmTest extends App {
   val thomasCrownAffair = new Film("The Thomas Crown Affair", 1999, 6.8, mcTiernan)
 
   eastwood.yearOfBirth // should be 1930
-  dieHard.director.name // should be "John McTiernan"
-  invictus.isDirectedBy(nolan) // should be false
+//  dieHard.director.name // should be "John McTiernan"
+//  invictus.isDirectedBy(nolan) // should be false
 
 }

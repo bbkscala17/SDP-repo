@@ -16,7 +16,6 @@ object Test extends App {
 
   val fruitProd = new ConcreteCreator().factory("apple")
   println("trying to create apple.  product is created of class " + fruitProd.getClass)
-
   //  while (true) {
   //    var typ = readLine("enter item to create as apple or onion or end to end")
   //      val prod = new ConcreteCreator().factory(typ)

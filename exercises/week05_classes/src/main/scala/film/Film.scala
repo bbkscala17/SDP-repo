@@ -1,9 +1,10 @@
 package film
 
- class Film (filmName: String, year: Int, imdbRating: Double, dir: Director) {
+ class Film (filmName: String, year: Int, rating: Double, dir: Director) {
   val name: String = filmName
    val director: Director = dir
    val yearOfRelease: Int = year
+   val imdbRating: Double = rating
    // as in film, these is needed to ensure we can call film.director etc from other class
    // and we need to rename to 'dir' in constructor so it does not conflict
 
@@ -36,5 +37,19 @@ package film
      println(director.name)
    }
  }
+ object Film{
+   def apply(filmName: String, year: Int, imdbRating: Double, dir: Director){
+     Film(filmName: String, year: Int, imdbRating: Double, dir: Director)
+   }
 
+   def highestRating(film1: Film, film2: Film): Double = film1.imdbRating match {
+     case film2.imdbRating if film2.imdbRating < film1.imdbRating => film1.imdbRating
+     case _ => film2.imdbRating
+   }
+
+   def oldestDirectorAtTheTime(film1: Film, film2: Film): Director = film1.director.yearOfBirth match {
+     case film2.director.yearOfBirth if film2.director.yearOfBirth < film1.director.yearOfBirth => film1.director
+     case _ => film2.director
+   }
+ }
 

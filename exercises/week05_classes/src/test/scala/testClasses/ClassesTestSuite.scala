@@ -1,6 +1,5 @@
 package testClasses
 import film.{Director, Film}
-import testClasses.myClasses._
 import org.scalatest.FunSuite
 
 class ClassesTestSuite extends FunSuite {
@@ -88,6 +87,17 @@ class ClassesTestSuite extends FunSuite {
 
   test("invictus director true") {
     assert(invictus.isDirectedBy(eastwood) == true)
+  }
+
+  val highPlainsDrifter2: Film = highPlainsDrifter.copy("L'homme des hautes plaines", 1973, 7.7, eastwood)
+  test("Copy film works"){
+    assert(highPlainsDrifter2.name == "L'homme des hautes plaines")
+  }
+  val highPlainsDrifter3 = highPlainsDrifter2.copy("", 1975, 7.7, eastwood)
+  test("Copy film works with name unchanged"){
+    assert(highPlainsDrifter3.name == "L'homme des hautes plaines")
+    assert(highPlainsDrifter3.yearOfRelease() == 1975)
+
   }
 
 }

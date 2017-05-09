@@ -79,10 +79,15 @@ class ClassesTestSuite extends FunSuite {
   }
 
   test("Diehard director") {
-    assert(dieHard.director.name = "John McTiernan")
+    assert(dieHard.director.name == "John McTiernan")
   }
 
-  test("invictus director") {
+  test("invictus director false") {
     assert(invictus.isDirectedBy(nolan) == false)
   }
+
+  test("invictus director true") {
+    assert(invictus.isDirectedBy(eastwood) == true)
+  }
+
 }

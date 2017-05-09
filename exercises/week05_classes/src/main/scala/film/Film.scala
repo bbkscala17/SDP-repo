@@ -1,11 +1,29 @@
 package film
 
-class Film (name: String, yearOfRelease: Int, imdbRasting: Double, director: Director){
+class Film (name: String, yearOfRelease: Int, imdbRating: Double, dir: Director){
 
-  def directorsAge(): Int = yearOfRelease - director.yearOfBirth
-//  def director(): String = director.name
-  def isDirectedBy(): Boolean = director match {
-    case director => true
-    case _ => false
+  def director(): Director = dir
+  def directorsAge(): Int = yearOfRelease - dir.yearOfBirth
+  def isDirectedBy(queryDirector: Director): Boolean = {
+    if(queryDirector.name  == dir.name && queryDirector.yearOfBirth() == dir.yearOfBirth()) {
+      true
+    } else {
+      false
+    }
   }
-}
+
+//  def isDirectedBy(queryDirector: Director): Boolean = {
+//  println("query dir" + queryDirector.name)
+//  println("this dir" + dir.name)
+//  true
+//  }
+
+  def print(): Unit ={
+    println(name)
+    println(yearOfRelease)
+    println(imdbRating)
+    println(dir)
+    println(dir.name)
+  }
+
+  }

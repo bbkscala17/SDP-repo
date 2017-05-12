@@ -210,6 +210,19 @@ object Funcs {
     case hd :: tl => if (f(hd)) hd :: filter(tl)(f) else filter(tl)(f)
   }
 
+  import scala.List._
+
+  def myFilter(func: (Int => Boolean), l: List[Int]): List[Int] = l match {
+    case head :: tail if(func(head)) => head :: myFilter(func, tail)
+    case head :: tail => myFilter(func, tail)
+    case _ => l
+  }
+
+  def isEven(i: Int) = i match{
+    case int if(i % 2 == 0) => true
+    case _ => false
+  }
+
   /**
     * flatMap is very similar to map. However, the function returns a List,
     * and flatMap flattens all of the resulting lists into one.

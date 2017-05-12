@@ -74,7 +74,23 @@ class FunctionsTestSuite extends FunSuite {
   }
 
   test("filter filters the list") {
-    assert(filter((-5 to 5).toList)(_ > 0) == (1 to 5).toList)
+    assert(myFilter((_ > 0), (-5 to 5).toList) == (1 to 5).toList)
+  }
+
+
+  val list:List[Int] = List(1,5,3,2,6,9,8,0,0,12)
+  val list2:List[Int] = List(12)
+  val list3:List[Int] = List()
+  val list4:List[Int] = List(0,-1,3,2,10,11,9)
+
+  test("More checks on myFilter method") {
+    assert(myFilter(isEven, list4) == List(0,2,10))
+      assert(myFilter(isEven, list3) == List())
+      assert(myFilter(isEven, list2) == List(12))
+      assert(myFilter(isEven, list) == List(2,6,8,0,0,12))
+    //now as anon function
+      assert(myFilter(x => x % 2 == 0, list) == List(2,6,8,0,0,12))
+      assert(myFilter(x => x % 3 == 0, list4) == List(0,3,9))
   }
 
   test("flatMap maps and flattens") {

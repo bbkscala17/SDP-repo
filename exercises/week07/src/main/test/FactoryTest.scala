@@ -1,7 +1,7 @@
 package Factory
 import org.scalatest.FunSuite
 
-class Week07TestSuite extends FunSuite {
+class FactoryTest extends FunSuite {
   test("Exercise 1 - Factory Pattern - Onion"){
   val onionProd = new ConcreteCreator().factory("onion")
   println("trying to create onion.  product is created of class " + onionProd.getClass)

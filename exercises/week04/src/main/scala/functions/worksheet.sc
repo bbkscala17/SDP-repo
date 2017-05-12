@@ -31,3 +31,16 @@ list.filter(x => x % 2 == 0)
 myFilter(x => x % 2 == 0, list)
 myFilter(x => x % 3 == 0, list4)
 list4.filter(x => x % 3 == 0)
+
+def flattenThis[A](l: List[A]): List[Any] = {
+  val output = l match{
+    case Nil => Nil
+    case (head: List[_]) :: tail => flattenThis(head) ::: flattenThis(tail)
+    case head :: tail => head :: flattenThis(tail)
+    case _ => throw new IllegalArgumentException()
+    //TODO as for construct
+  }
+  output
+}
+val notFlat: List[List[Int]] = List(List(9,8,7),List(2,3), List(9), List(9))
+flattenThis(notFlat)

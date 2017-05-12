@@ -210,7 +210,7 @@ object Funcs {
     case hd :: tl => if (f(hd)) hd :: filter(tl)(f) else filter(tl)(f)
   }
 
-  import scala.List._
+//  my version
 
   def myFilter(func: (Int => Boolean), l: List[Int]): List[Int] = l match {
     case head :: tail if(func(head)) => head :: myFilter(func, tail)

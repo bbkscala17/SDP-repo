@@ -153,6 +153,17 @@ object Funcs {
     case _ => throw new UnknownError("???")
   }
 
+  def flattenThis[A](l: List[A]): List[Any] = {
+    val output = l match{
+      case Nil => Nil
+      case (head: List[_]) :: tail => flattenThis(head) ::: flattenThis(tail)
+      case head :: tail => head :: flattenThis(tail)
+      case _ => throw new IllegalArgumentException()
+      //TODO as for construct
+    }
+    output
+  }
+
   //keith old answers do not use
 //  def sum(ls: List[Double]): Double = ls match {
 //    case Nil => 0

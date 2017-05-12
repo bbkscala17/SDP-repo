@@ -98,6 +98,12 @@ class FunctionsTestSuite extends FunSuite {
       List(1, 2, 3, 4, 5, 2, 3, 4, 5, 3, 4, 5, 4, 5, 5))
   }
 
+
+  test("flattenThis"){
+    assert(flattenThis(List(List(9,8,7),List(2,3), List(9), List(9))) == List(9,8,7,2,3,9,9))
+  }
+
+
   // Combined
 
   test("maxAverage calculates the max average") {

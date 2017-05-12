@@ -44,3 +44,36 @@ def flattenThis[A](l: List[A]): List[Any] = {
 }
 val notFlat: List[List[Int]] = List(List(9,8,7),List(2,3), List(9), List(9))
 flattenThis(notFlat)
+
+
+//TREE TRAVERSAL EXAMPLE FROM
+//http://www.scala-lang.org/old/node/7984
+
+sealed abstract class Tree
+case class Leaf(x: Int) extends Tree
+case class Node(left: Tree, right: Tree) extends Tree
+
+// Recursive but not tail recursive
+def sum(t: Tree): Int = t match {
+  case Leaf(x) => x
+  case Node(l, r) => sum(l) + sum(r)
+}
+//A common trick is to use a continuation to make the function tail
+//recursive. That works in Haskell or F# for instance but Scala is not
+//able to optimize the following code. Probably because the recursive call
+//is from lambda (it is not a self call).
+def sum2(t: Tree) = {
+  def sumRec(t: Tree, k: Int => Int): Int = t match {
+    case Leaf(x) => k(x)
+    case Node(l, r) =>
+      sumRec(l, lsum => sumRec(r, rsum => k(lsum + rsum)))
+  }
+  sumRec(t, x => x)
+}
+def bigTree =
+  (0 to 100).foldLeft(Leaf(1): Tree) { (t, i) => Node(Leaf(1), t) }
+sum2(bigTree)
+// StackOverflowError with 100000
+
+
+

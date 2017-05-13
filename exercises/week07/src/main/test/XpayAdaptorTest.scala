@@ -26,7 +26,14 @@ class XpayAdaptorTest extends FunSuite {
   test("Exercise 3 - Adaptor cust card no") {
     assert(xpayObj.getCreditCardNo == payD.getCustCardNo)
   }
+  test("Exercise 3 - Adaptor month") {
+    assert(xpayObj.getCardExpMonth == payD.getCardExpMonthDate.substring(0,2))
+  }
+  test("Exercise 3 - Adaptor year") {
+    assert(xpayObj.getCardExpYear ==payD.getCardExpMonthDate.substring(2,4))
+  }
+
   test("Exercise 3 - Adaptor date") {
-    assert(xpayObj.getCardExpMonth + xpayObj.getCardExpYear == payD.getCardExpMonthDate)
+    assert(xpayObj.getCardExpMonth.concat(xpayObj.getCardExpYear) == payD.getCardExpMonthDate)
   }
 }

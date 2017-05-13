@@ -1,7 +1,6 @@
 package abstractfactory
 
 trait XMLParser {
-  def parse()
+  def parse(): String
 
-  // TODO
 }

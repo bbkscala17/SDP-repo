@@ -1,9 +1,16 @@
 package observer
 
-class ConcreteObserver extends Observer{
-  override def update(desc: String): Unit = ???
+class ConcreteObserver(subject: ConcreteSubject) extends Observer{
+  // concrete observer needs to hold a reference to concrete subject
+  // each observer registers with a concrete subject to receive updates
 
-  override def subscribe(): Unit = ???
+  override def update(desc: String) = {
+    // The Observers update method is called when the Subject's state changes
+    println("notifying user " + desc)
+  }
 
-  override def unSubscribe(): Unit = ???
+  override def subscribe(): Unit = subject.subscribeObserver(this)
+
+  override def unSubscribe(): Unit = subject.unSubscribeObserver(this)
+
 }

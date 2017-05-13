@@ -11,4 +11,15 @@ It is appropriate to use the stategy design pattern when you want many different
 We saw this in coursework two where we had a series of instruction objects with algorithms built into their execute() methods (iadd, iconst etc)
 
 
+##Q3 - Abstract Factory Pattern
+
+This can be described as a 'factory of factories'.  I.e. an abstract factory may create factories which themselves will create the objects required by the application
+
+Refcardz explains that it is appropriate to use this when (their words):
+ - creation of concrete objects should be independent of the system usign them
+ - system needs to use multiple families of objects, which must be used together
+ - Libraries must be used without exposing implementation details
+ - Concrete classes should be decoupled from clients
+
+
 

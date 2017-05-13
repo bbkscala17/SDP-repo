@@ -2,51 +2,30 @@ package xpay
 
 trait XpayToPayDAdpaterImpl extends XpayToPayDAdapter{
 
-  val payd:PayD = new PayDImpl()
+  val payD:PayD = new PayDImpl()
 
-  }
+  def getCreditCardNo: String = payD.getCustCardNo
 
-  def getCreditCardNo: String
+  def setCreditCardNo(creditCardNo: String): Unit = payD.setCustCardNo(creditCardNo)
 
-  def setCreditCardNo(creditCardNo: String)
+  def getCustomerName: String = payD.getCardOwnerName()
 
-  def getCustomerName: String
+  def setCustomerName(customerName: String): Unit = payD.setCardOwnerName(customerName)
 
-  def setCustomerName(customerName: String)
+  def getCardExpMonth: String = (payD.getCardExpMonthDate).substring(0,1)
 
-  def getCardExpMonth: String
+  def setCardExpMonth(cardExpMonth: String): Unit = payD.setCardExpMonthDate(cardExpMonth + this.getCardExpYear)
 
-  def setCardExpMonth(cardExpMonth: String)
+  def getCardExpYear: String = payD.getCardExpMonthDate.substring(2,3)
+  //assumes payD date is stored as MMYY so substring 2,3 is the year part
 
-  def getCardExpYear: String
+  def setCardExpYear(cardExpYear: String): Unit = payD.setCardExpMonthDate(this.getCardExpMonth + cardExpYear)
 
-  def setCardExpYear(cardExpYear: String)
+  def getCardCVVNo: Short = payD.getCVVNo.toShort
 
-  def getCardCVVNo: Short
+  def setCardCVVNo(cardCVVNo: Short): Unit = payD.setCVVNo(cardCVVNo.toInt)
 
-  def setCardCVVNo(cardCVVNo: Short)
+  def getAmount: Double = payD.getTotalAmount
 
-  def getAmount: Double
-
-  def setAmount(amount: Double)
+  def setAmount(amount: Double): Unit = payD.setTotalAmount(amount)
 }
-
-def getCustCardNo: String
-
-def setCustCardNo(custCardNo: String)
-
-def getCardOwnerName: String
-
-def setCardOwnerName(cardOwnerName: String)
-
-def getCardExpMonthDate: String
-
-def setCardExpMonthDate(cardExpMonthDate: String)
-
-def getCVVNo: Integer
-
-def setCVVNo(cVVNo: Integer)
-
-def getTotalAmount: Double
-
-def setTotalAmount(totalAmount: Double)

@@ -1,6 +1,6 @@
 package xpay
 
-class PayDImpl {
+class PayDImpl extends PayD{
 
   private var custCardNo: String = null
   private var cardOwnerName: String = null

@@ -1,7 +1,7 @@
 package builder
 
 object SedanCarBuilder extends CarBuilder {
-  val car: Car = new Car("Sedan")
+  val car: Car = new Car("SEDAN")
   override def buildBodyStyle: Unit = {
     car.setBodyStyle("External dimensions: overall length (inches): 202.9,\n   overall width (inches): 76.2, overall height (inches): 60.7,\n   wheelbase (inches): 112.9, front track (inches): 65.3,\n   rear track (inches): 65.5 and curb to curb turning circle (feet): 39.5")
   }

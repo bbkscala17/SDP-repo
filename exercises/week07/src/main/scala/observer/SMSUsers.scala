@@ -5,7 +5,10 @@ package observer
 
 case class SMSUsers(s: Subject, msg: String) extends Observer {
   def update(desc: String): Unit = {
-    println("notifying user " + s + "with message" + msg)
+    println("===============")
+    println("notifying user " + msg)
+    println(s.subjectDetails)
+    println(desc)
   }
 
   def subscribe() = s.subscribeObserver(this)

@@ -4,5 +4,8 @@ package abstractfactory
 // (which factory is in turn is created by the abstract factory)
 
 class NYCOrderXMLParser extends XMLParser{
-  override def parse(): String = "NYC Parsing order XML...."
+  override def parse(): String = {
+    println("NYC Parsing order XML....")
+    "NYC Order XML Message"
+  }
 }

@@ -21,5 +21,19 @@ Refcardz explains that it is appropriate to use this when (their words):
  - Libraries must be used without exposing implementation details
  - Concrete classes should be decoupled from clients
 
+#Q5 - Construction Bloat and Modularity
+
+"In general, the details of object construction, such as instantiating and initialising the components that comprise the object,
+are kept within the object, often as part of its constructor"
+
+This may be fine for simple objects but when you get complexity and potentially lots of different kinds of objects needed by the object
+then the constructor may become too unwieldy.  e.g. it may be necessary to have numerous different constructors, or it might be very difficult
+to work out exactyl whcih constructors would be required in advance.
+
+This approach also also leads to close coupling (i.e. the opposite of a modular approach) making it harder to add new things,
+take redundant things away, or swap things around as requirements change and the business needs evolve.
+
+The Builder design pattern helps with this as it helps to create instances of classes without using the class constructors.
+It does so by having a 'builder' object, which handles/sets initialisation parameters as required when building the new object
 
 

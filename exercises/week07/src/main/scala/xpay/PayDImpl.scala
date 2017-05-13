@@ -9,7 +9,7 @@ class PayDImpl extends PayD{
   private var cardCVVNo: Int = 0
   private var totalAmount: Double = .0
 
-  def getCustCardNo: String = getCustCardNo
+  def getCustCardNo: String = custCardNo
 
   def setCustCardNo(custCardNo: String): Unit = {
     this.custCardNo = custCardNo

@@ -1,6 +1,6 @@
 package xpay
 
-trait XpayToPayDAdpaterImpl extends XpayToPayDAdapter{
+class XpayToPayDAdpaterImpl extends XpayToPayDAdapter{
 
   val payD:PayD = new PayDImpl()
 
@@ -8,18 +8,32 @@ trait XpayToPayDAdpaterImpl extends XpayToPayDAdapter{
 
   def setCreditCardNo(creditCardNo: String): Unit = payD.setCustCardNo(creditCardNo)
 
-  def getCustomerName: String = payD.getCardOwnerName()
+  def getCustomerName: String = payD.getCardOwnerName
 
   def setCustomerName(customerName: String): Unit = payD.setCardOwnerName(customerName)
 
   def getCardExpMonth: String = (payD.getCardExpMonthDate).substring(0,1)
 
-  def setCardExpMonth(cardExpMonth: String): Unit = payD.setCardExpMonthDate(cardExpMonth + this.getCardExpYear)
+  def setCardExpMonth(cardExpMonth: String): Unit = {
+      if(payD.getCardExpMonthDate == null){
+        payD.setCardExpMonthDate(cardExpMonth.concat("XX"))
+    } else {
+        payD.setCardExpMonthDate(cardExpMonth + this.getCardExpYear)
+      }
+  }
 
   def getCardExpYear: String = payD.getCardExpMonthDate.substring(2,3)
   //assumes payD date is stored as MMYY so substring 2,3 is the year part
 
-  def setCardExpYear(cardExpYear: String): Unit = payD.setCardExpMonthDate(this.getCardExpMonth + cardExpYear)
+  def setCardExpYear(cardExpYear: String): Unit = {
+    if (payD.getCardExpMonthDate == null) {
+      payD.setCardExpMonthDate("XX".concat(cardExpYear))
+    } else {
+      payD.setCardExpMonthDate(this.getCardExpMonth + cardExpYear)
+    }
+  }
+
+
 
   def getCardCVVNo: Short = payD.getCVVNo.toShort
 

@@ -1,6 +1,6 @@
 package xpay
 
-trait XpayToPayDAdapter {
+trait XpayToPayDAdapter extends Xpay {
 
   def getCreditCardNo: String
 

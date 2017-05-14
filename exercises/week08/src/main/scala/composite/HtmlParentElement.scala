@@ -15,4 +15,12 @@ case class HtmlParentElement(s: String) extends HtmlTag(s) {
     children.map(child => child.generateHtml)
     println(endTag)
   }
+  override def addChildTag(htmlTag: HtmlTag):Unit = children += htmlTag
+
+  override def removeChildTag(htmlTag: HtmlTag): Unit = children -= htmlTag
+
+  override def getChildren: List[HtmlTag] = children.toList
+
+  override def setTagBody(tagBody: String) = throw new IllegalArgumentException("cannot set body in parent element")
+  //FIXME do this without throwing exceptions
 }

@@ -7,13 +7,13 @@ abstract class HtmlTag(tagName: String) {
 
   def setEndTag(tag: String)
 
-  def setTagBody(tagBody: String) = ???
+  def setTagBody(tagBody: String)
 
-  def addChildTag(htmlTag: HtmlTag) = ???
+  def addChildTag(htmlTag: HtmlTag)
 
-  def removeChildTag(htmlTag: HtmlTag) = ???
+  def removeChildTag(htmlTag: HtmlTag)
 
-  def getChildren: List[HtmlTag] = ???
+  def getChildren: List[HtmlTag]
 
   def generateHtml
 }

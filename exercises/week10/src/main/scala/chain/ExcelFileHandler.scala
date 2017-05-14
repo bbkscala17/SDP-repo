@@ -15,7 +15,7 @@ case class ExcelFileHandler(s: String) extends Handler {
           h.process(file)
         }
       }
-      case true => throw new UnsupportedOperationException("Cannot process files of type " + file.fileType)
+      case true => println("File not supported type " + file.fileType)
     }
   }
 

@@ -14,7 +14,7 @@ case class VideoFileHandler(s: String) extends Handler {
           h.process(file)
         }
       }
-      case true => throw new UnsupportedOperationException("Cannot process files of type " + file.fileType)
+      case true => println("Sorry cannot process files of type " + file.fileType)
     }
   }
 

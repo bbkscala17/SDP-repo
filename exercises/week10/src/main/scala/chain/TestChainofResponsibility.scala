@@ -19,17 +19,17 @@ object TestChainofResponsibility extends App {
 
 		file = File("Abc.mp3", "audio", "C:");
 		textHandler.process(file)
-		
+
 		println("---------------------------------")
-		
+
 		file = File("Abc.jpg", "video", "C:")
 		textHandler.process(file)
-		
+
 		println("---------------------------------")
-		
+
 		file = File("Abc.doc", "doc", "C:")
 		textHandler.process(file)
-		
+
 		println("---------------------------------")
 		
 		file = File("Abc.bat", "bat", "C:")

@@ -43,4 +43,7 @@ The idea is to wrap a complex system into something simpler, to make it easier f
  without understanding all of the complexity of the real system - i.e. to present them with a facade.
 
 You would use this when you need to simplify a complex system and the client does not need to be able to see all
-of the complexity in order to do what they need to do
+of the complexity in order to do what they need to do.  e.g. if you have a complex existing system which you cannot rewrite
+from scratch, and the client only needs to actually use a limited number of functions of that system, you could make a facade
+
+

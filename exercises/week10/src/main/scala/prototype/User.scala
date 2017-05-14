@@ -4,5 +4,5 @@ class User(var userName: String,
            var level: String,
            var accessControl: AccessControl) {
 
-  override def toString(): String = "Name: " + ", Level: " + level + " Access: " + accessControl.toString()
+  override def toString(): String = "Name: " + userName + ", Level: " + level + " Access: " + accessControl.toString()
 }

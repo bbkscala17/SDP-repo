@@ -46,4 +46,26 @@ You would use this when you need to simplify a complex system and the client doe
 of the complexity in order to do what they need to do.  e.g. if you have a complex existing system which you cannot rewrite
 from scratch, and the client only needs to actually use a limited number of functions of that system, you could make a facade
 
+In a way it is like the adaptor in that it changes one thing to another, but by wrapping the original object it can be simpler
+
+#Q9 - Bridge pattern
+
+The Bridge pattern decouples an abstraction from its implementation so that the two can very independently.
+
+Derek Banas explains it as "Progressively adding functionality while separating out major differences using absract classes"
+
+e.g. if designing remote controls for lots of different TVs, all will have a volumne control.  But TV2 may have a DVD player so that button 6 on TV2 relates to that and not to change channel like on TV1.  So this method (button 6) differs betweeen the two
+Our abstract remote control classes sit between the remotes and the TVs and hold a reference to the TV (e.g. TV1 and TV2) and define the abstract methods that differ between the two
+
+Banas on when to use it:
+- When you want to be able to change both the abstractions (abstract classes) and concrete classes independently
+- when you want the first abstract class to define rules (Abstract TV)
+- The concrete class adds additional rules (Concrete TV)
+- An abstract class has a reference to the device and it defines abstract methods that will be defined (Abstract remote)
+- The Concrete Remote defines the abstract methods required
+
+It is useful to avoid a proliferation of classes / sub classes whcih would make maintenance and readability difficult
+
+Again this is similar to adaptor except that we use adaptor in 3rd party or legacy code, but we use the Bridge pattern when we
+design from the outset
 

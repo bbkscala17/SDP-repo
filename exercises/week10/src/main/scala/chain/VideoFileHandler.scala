@@ -6,7 +6,7 @@ case class VideoFileHandler(s: String) extends Handler {
   override def setHandler(handler: Handler): Unit = nextHandler = Some(handler)
 
   override def process(file: File): Unit = file.fileType match {
-    case "text" => println("Process and saving video file by " + s)
+    case "video" => println("Process and saving video file by " + s)
     case _ => nextHandler.get match {
       case h: Handler => h .process(file)
     }

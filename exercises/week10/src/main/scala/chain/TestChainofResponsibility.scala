@@ -15,8 +15,8 @@ object TestChainofResponsibility extends App {
 		audioHandler.setHandler(videoHandler)
 		videoHandler.setHandler(imageHandler)
 		// presumably this is setting the next handler in the chain for each handler (i.e. chain them all together)
-		
-		
+
+
 		file = File("Abc.mp3", "audio", "C:");
 		textHandler.process(file)
 		

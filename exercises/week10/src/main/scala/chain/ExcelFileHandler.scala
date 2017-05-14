@@ -7,11 +7,13 @@ case class ExcelFileHandler(s: String) extends Handler {
   override def setHandler(handler: Handler): Unit = nextHandler = Some(handler)
 
   override def process(file: File): Unit = file.fileType match {
-    case "text" => println("Process and saving text file by " + s)
-    case _ => nextHandler.get match {
-      case h: Handler => {
-        println(s + " forwards request to " + h.getHandlerName())
-        h.process(file)
+    case "excel" => println("Process and saving text file by " + s)
+    case _ => nextHandler.isEmpty match {
+      case false => nextHandler.get match {
+        case h: Handler => {
+          println(s + " forwards request to " + h.getHandlerName())
+          h.process(file)
+        }
       }
     }
   }

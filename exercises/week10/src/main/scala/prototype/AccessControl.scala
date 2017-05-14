@@ -5,4 +5,6 @@ class AccessControl(val controlLevel: String,
     extends Prototype {
 
   override def clone(): AccessControl = ???
+
+  override def toString(): String = "Access Control Level: " + controlLevel + " , Access: " + access
 }

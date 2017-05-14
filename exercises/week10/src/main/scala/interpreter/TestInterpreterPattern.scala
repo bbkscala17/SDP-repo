@@ -10,6 +10,9 @@ object TestInterpreterPattern extends App {
       if (ExpressionUtils.isOperator(s)) {
         val rightExpression: Expression = stack.pop()
         val leftExpression: Expression = stack.pop()
+        println("left: " + leftExpression.interpret())
+        println("right: " + rightExpression.interpret())
+        println("s" + s)
         val operator: Expression =
           ExpressionUtils.getOperator(s, leftExpression, rightExpression)
         stack.push(new Number(operator.interpret()))

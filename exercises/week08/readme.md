@@ -69,3 +69,19 @@ It is useful to avoid a proliferation of classes / sub classes whcih would make 
 Again this is similar to adaptor except that we use adaptor in 3rd party or legacy code, but we use the Bridge pattern when we
 design from the outset
 
+#Q11 - Composite Design Pattern
+
+This pattern is for composing objects into tree structures (nodes, leafs) to represent whole-part hierarchies.
+Each object can be treated independently or they can be treated as a nested set using the same interface
+
+e.g. if you have a shopping cart and want the total cost, you could call the cost() method on the whole cart or one item, or perhaps just those items in the 'books' catergory
+
+When to use it?  Anywhere that a tree structure makes sense.  e.g. file systems are a good candidate as they are pure tree structures with directories as nodes and files as leafs
+
+The four participants are:
+- composite - this is like the node in the tree or the directory in the file structure.  Can contain other composites or leafs.  Contains its own name and methods to describe its contents
+- leaf - final elements e.g. items in shopping cart.  Contains its own name and method to get it
+- component - the interface for both the composite and the leaf.
+- tree object which implements component interface so contains methods for adding and removing units and has a list of its childen
+
+

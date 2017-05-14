@@ -2,7 +2,9 @@ package command
 
 class LoggingJob extends Job {
 
-  def setLogging(logging: Logging): Unit = ???
+  var logging: Logging = null
 
-  override def run(): Unit = ???
+  def setLogging(logging: Logging): Unit = this.logging = logging
+
+  override def run(): Unit = logging.log
 }

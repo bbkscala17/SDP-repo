@@ -1,5 +1,5 @@
 package command
 
 case class Email() {
-    def sendEmail() = println("Sending email.......")
+    def sendEmail() = println("Executing email jobs.")
 } 

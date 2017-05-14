@@ -6,5 +6,7 @@ class FileIOJob extends Job {
 
   def setFileIO(fileIO: FileIO): Unit = this.fileIO = fileIO
 
-  override def run(): Unit = fileIO.execute()
+  override def run(): Unit = {
+    fileIO.execute()
+  }
 }

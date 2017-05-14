@@ -1,9 +1,16 @@
 package chain
 
 case class TextFileHandler(s: String) extends Handler {
-  override def setHandler(handler: Handler): Unit = println()
+  var nextHandler: Option[Handler] = None
 
-  override def process(file: File): Unit = ???
+  override def setHandler(handler: Handler): Unit = nextHandler = Some(handler)
 
-  override def getHandlerName(): String = ???
+  override def process(file: File): Unit = file.fileType match {
+    case "text" => println("Process and saving text file by " + s)
+    case _ => nextHandler.get match {
+      case h: Handler => h .process(file)
+    }
+  }
+
+  override def getHandlerName(): String = s
 }

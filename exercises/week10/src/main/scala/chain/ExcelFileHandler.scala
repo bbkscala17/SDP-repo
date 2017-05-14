@@ -7,7 +7,7 @@ case class ExcelFileHandler(s: String) extends Handler {
   override def setHandler(handler: Handler): Unit = nextHandler = Some(handler)
 
   override def process(file: File): Unit = file.fileType match {
-    case "excel" => println("Process and saving text file by " + s)
+    case "excel" => println("Process and saving excel file by " + s)
     case _ => nextHandler.isEmpty match {
       case false => nextHandler.get match {
         case h: Handler => {
@@ -15,6 +15,7 @@ case class ExcelFileHandler(s: String) extends Handler {
           h.process(file)
         }
       }
+      case true => throw new UnsupportedOperationException("Cannot process files of type " + file.fileType)
     }
   }
 

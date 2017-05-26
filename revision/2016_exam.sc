@@ -51,6 +51,19 @@ def tailRecHelper(s: String, xs: List[List[String]], accum: List[String]): List[
   case _ => accum
 }
 
+getSubstitutions2("Jeff", List(List("Fred", "Frederick"), List("Jeff", "Jeffrey"), List("Geoff", "Jeff", "Jeffrey")))
 
-getSubstitutions2("Jeff", List(List("Fred", "Frederick"), List("Jeff", "Jeffrey"), List("Geoff", "Jeff","Jeffrey")))
+def similarNames(name: Tuple3[String, String, String], xs: List[List[String]]): List[Tuple3[String, String, String]] = {
+  val subsnames = getSubstitutions2(name._1, xs)
+    getSubsNames(name, subsnames)
+}
+def getSubsNames(name: (String, String, String), xs: List[String]): List[Tuple3[String, String, String]] = xs match{
+    case head :: tail => (head, name._2, name._3) :: getSubsNames(name, tail)
+    case _ => List[Tuple3[String, String, String]](Tuple3(name._1, name._2, name._3))
+}
+println("Similar names")
+similarNames(("Fred", "W", "Smith"), List(List("Fred", "Frederick", "Frank"), List("Jeff", "Jeffrey"), List("Geoff", "Jeff", "Jeffrey")))
+
+similarNames(("Bernard", "J", "Jones"), List(List("Fred", "Frederick", "Frank"), List("Jeff", "Jeffrey"), List("Bernie", "Bern", "Bernard", "Bez", "B"), List("Geoff", "Jeff", "Jeffrey")))
+
 

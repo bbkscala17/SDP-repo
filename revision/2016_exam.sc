@@ -1,3 +1,5 @@
+import scala.annotation.tailrec
+
 // Q6
 
 def myFlatten[A](as: List[List[A]]): List[Any] = as match{
@@ -36,4 +38,19 @@ def getSubstitutions1(s: String, xs: List[List[String]]): List[String] = xs matc
   }
 
 getSubstitutions1("Jeff", List(List("Fred", "Frederick"), List("Jeff", "Jeffrey"), List("Geoff", "Jeff","Jeffrey")))
+
+
+def getSubstitutions2(s: String, xs: List[List[String]]): List[String] = {
+  tailRecHelper(s, xs, List[String]())
+}
+
+@tailrec
+def tailRecHelper(s: String, xs: List[List[String]], accum: List[String]): List[String] = xs match {
+  case head :: tail if head.contains(s) => tailRecHelper(s, tail, accum ::: head.filter(x => x != s))
+  case head :: tail => tailRecHelper(s, tail, accum) // drop head as doesnt contain
+  case _ => accum
+}
+
+
+getSubstitutions2("Jeff", List(List("Fred", "Frederick"), List("Jeff", "Jeffrey"), List("Geoff", "Jeff","Jeffrey")))
 

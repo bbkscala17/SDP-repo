@@ -1,13 +1,13 @@
 // Q6
 
-def flatten[A](as: List[List[A]]): List[Any] = as match{
-  case (head: List[A]) :: tail => head ::: flatten(tail)
+def myFlatten[A](as: List[List[A]]): List[Any] = as match{
+  case (head: List[A]) :: tail => head ::: myFlatten(tail)
   case head :: tail => head :: tail
-  case value: A => value
+  case Nil => Nil
 }
 
 val list1 = List(List(1,2,3),List(4,5,6),List(7),List(8,9))
-println(flatten(list1))
+println(myFlatten(list1))
 
 
 // Q8
@@ -28,3 +28,12 @@ def helper(searchStr: String, xs: List[String], accum: List[String] = List()): L
 println(allExceptOption("item", List("fred", "knife", "butter")))
 
 println(allExceptOption("knife", List("fred", "knife", "butter")))
+
+def getSubstitutions1(s: String, xs: List[List[String]]): List[String] = xs match {
+  case head :: tail if head.contains(s) => head.filter(x => x!=s) ::: getSubstitutions1(s, tail)
+  case head :: tail => getSubstitutions1(s, tail) // drop head as doesnt contain
+  case _ => List[String]()
+  }
+
+getSubstitutions1("Jeff", List(List("Fred", "Frederick"), List("Jeff", "Jeffrey"), List("Geoff", "Jeff","Jeffrey")))
+
